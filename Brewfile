@@ -43,6 +43,7 @@ brew 'pcre'
 brew 'swig'
 brew 'tmux'
 brew 'tokyo-cabinet'
+brew 'wifi-password'
 brew 'zsh', args: ['without-etcdir']
 
 cask 'alfred'
