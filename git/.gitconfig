@@ -1,0 +1,44 @@
+# Local config - username, tokens, etc.
+[include]
+    path = ~/.gitconfig.local
+
+[core]
+    excludesfile = ~/.gitignore_global
+    attributesfile = ~/.gitattributes
+    autocrlf = false
+    safecrlf = true
+    editor = nano
+    pager = diff-so-fancy | less --tabs=4 -RFX
+
+[alias]
+    slog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    co = checkout
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[mergetool "sublime"]
+    cmd = sublime -w $MERGED
+    trustExitCode = false
+[merge]
+    tool = sublime
+
+# Push easily - http://stackoverflow.com/a/23918418/89484
+[push]
+    default = current
