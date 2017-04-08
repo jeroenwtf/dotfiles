@@ -49,6 +49,7 @@ brew 'zsh', args: ['without-etcdir']
 cask 'alfred'
 cask 'firefox'
 cask 'google-chrome'
+cask 'hyper'
 cask 'iterm2'
 cask 'sequel-pro'
 cask 'skype'
