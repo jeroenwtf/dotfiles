@@ -3,10 +3,10 @@
     path = ~/.gitconfig.local
 
 [core]
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/jeroen/.gitignore_global
     attributesfile = ~/.gitattributes
-    autocrlf = false
-    safecrlf = true
+	autocrlf = false
+	safecrlf = false
     editor = nano
     pager = diff-so-fancy | less --tabs=4 -RFX
 
@@ -42,3 +42,14 @@
 # Push easily - http://stackoverflow.com/a/23918418/89484
 [push]
     default = current
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Jeroen van Meerendonk
+	email = jeroen.vanmeerendonk@qustodio.com
+[commit]
+	template = /Users/jeroen/.stCommitMsg
