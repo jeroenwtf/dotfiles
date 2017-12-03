@@ -1,12 +1,10 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes
-
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
@@ -14,10 +12,9 @@ Plug 'mattn/emmet-vim'
 Plug 'shougo/deoplete.nvim'
 Plug 'bling/vim-bufferline'
 Plug 'othree/html5.vim'
-"Plug 'JulesWang/css.vim'
+Plug 'matze/vim-move'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
-"Plug 'stephenway/postcss.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'django.vim'
 Plug 'shawncplus/phpcomplete.vim'
@@ -26,25 +23,19 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'jremmen/vim-ripgrep'
 Plug 'yggdroot/indentline'
 
-
-" Initialize plugin system
 call plug#end()
 
 syntax on
-let base16colorspace=256
-colorscheme base16-eighties
+colorscheme nord
 
-
-" UI Config
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set number          " show line number
 set cursorline      " highlight current line
 set showmatch       " highlight matching brace
 set ignorecase      " Make searching case insensitive
 set smartcase       " ... unless the query has capital letters.
+set number          " show line number
 set hid             " Allows hiding buffers, makes it faster
 set list listchars=tab:>-,trail:.,extends:>
-
+set mouse=a " Enable mouse in all in all modes
 
 " 80 column warning
 let &colorcolumn="80"
@@ -91,9 +82,13 @@ map <c-b> :CtrlPBuffer<cr>
 " nnoremap <C-L> <C-W><C-L>
 " nnoremap <C-H> <C-W><C-H>
 
-" Move between buffers
-nmap <c-l> :bnext<CR>
-nmap <c-h> :bprevious<CR>
+" Delete lines for realz, no yanking
+nnoremap d "_d
+vnoremap d "_d
+
+" Move between buffers using TAB and SHIFT+TAB
+nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
 
 " Relative numbering
 function! NumberToggle()
