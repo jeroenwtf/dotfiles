@@ -9,7 +9,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-Plug 'shougo/deoplete.nvim'
+" Plug 'shougo/deoplete.nvim'
 Plug 'bling/vim-bufferline'
 Plug 'othree/html5.vim'
 Plug 'matze/vim-move'
@@ -28,17 +28,19 @@ call plug#end()
 syntax on
 colorscheme nord
 
+set clipboard=unnamed " Enable OS clipboard
 set cursorline      " highlight current line
-set showmatch       " highlight matching brace
-set ignorecase      " Make searching case insensitive
-set smartcase       " ... unless the query has capital letters.
-set number          " show line number
 set hid             " Allows hiding buffers, makes it faster
+set ignorecase      " Make searching case insensitive
 set list listchars=tab:>-,trail:.,extends:>
 set mouse=a " Enable mouse in all in all modes
+set number          " show line number
+set scrolloff=3     " Minimal number of screen lines to keep above and below the cursor
+set showmatch       " highlight matching brace
+set smartcase       " ... unless the query has capital letters.
 
 " 80 column warning
-let &colorcolumn="80"
+"let &colorcolumn="80"
 
 " PostCSS stuff
 augroup filetypedetect
@@ -47,14 +49,16 @@ augroup END
 
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline_extensions = ['tabline']
 
 " Bufferline
 let g:bufferline_modified = '*'
+let g:bufferline_echo = 0 " Disables the buffer list on command line
 
 " Deoplete
-autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
-let g:deoplete#enable_at_startup = 1
+" autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+" let g:deoplete#enable_at_startup = 1
 
 " Ctrlp config
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
@@ -65,6 +69,7 @@ endif
 " Ale linter
 let g:ale_sign_error = 'x'
 let g:ale_sign_warning = '!'
+let g:airline#extensions#ale#enabled = 1
 hi ALEErrorSign cterm=NONE ctermfg=red ctermbg=NONE
 hi ALEWarningSign cterm=NONE ctermfg=yellow ctermbg=NONE
 
@@ -76,11 +81,17 @@ endif
 
 
 " Remapping
-map <c-b> :CtrlPBuffer<cr>
+map <C-b> :CtrlPBuffer<cr>
 " nnoremap <C-J> <C-W><C-J>
 " nnoremap <C-K> <C-W><C-K>
 " nnoremap <C-L> <C-W><C-L>
 " nnoremap <C-H> <C-W><C-H>
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 " Delete lines for realz, no yanking
 nnoremap d "_d

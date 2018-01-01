@@ -18,6 +18,7 @@ brew 'git', args: ['without-completions']
 brew 'openssl'
 brew 'phantomjs'
 brew 'casperjs'
+brew 'diff-so-fancy'
 brew 'pcre2'
 brew 'fish'
 brew 'libpng'
