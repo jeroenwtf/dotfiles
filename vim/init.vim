@@ -1,8 +1,7 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
 
-"Plug 'chriskempson/base16-vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -26,7 +25,8 @@ Plug 'yggdroot/indentline'
 call plug#end()
 
 syntax on
-colorscheme nord
+let g:onedark_termcolors=16
+colorscheme onedark
 
 set clipboard=unnamed " Enable OS clipboard
 set cursorline      " highlight current line
