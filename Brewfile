@@ -51,6 +51,7 @@ brew 'zsh', args: ['without-etcdir']
 cask 'alfred'
 cask 'appcleaner'
 cask 'bitbar'
+cask 'bitwarden'
 cask 'clipy'
 cask 'firefox'
 cask 'google-chrome'
