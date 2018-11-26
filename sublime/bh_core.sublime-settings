@@ -1,0 +1,9 @@
+{
+    "bracket_styles": {
+        "default": {
+            "icon": "none",
+            "color": "brackethighlighter.default",
+            "style": "underline"
+        }
+    }
+}

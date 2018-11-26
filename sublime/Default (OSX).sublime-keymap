@@ -1,0 +1,20 @@
+[
+    { "keys": ["alt+down"], "command": "swap_line_down" },
+    { "keys": ["alt+up"], "command": "swap_line_up" },
+    { "keys": ["super+d"], "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["super+y"], "command": "toggle_side_bar" },
+    { "keys": ["ctrl+shift+t"], "command": "delete_trailing_spaces" },
+    { "keys": ["ctrl+shift+d"], "command": "toggle_trailing_spaces" },
+    { "keys": ["ctrl+super+s"], "command": "insert_snippet", "args": {"contents": "<strong>${0:$SELECTION}</strong>" } },
+    { "keys": ["ctrl+super+a"], "command": "insert_snippet", "args": {"contents": "<span>${0:$SELECTION}</span>" } },
+    { "keys": ["alt+space"], "command": "insert_snippet", "args": {"contents": " " } },
+    { "keys": ["super+alt+l"],
+        "command": "insert_snippet",
+        "args": {
+            "contents": "console.log(${1:}$SELECTION)${0}"
+        }, "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "source.js", "match_all": true }
+        ]
+    }
+]
