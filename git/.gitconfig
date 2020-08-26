@@ -33,23 +33,16 @@
     changed = green
     untracked = cyan
 
-[mergetool "sublime"]
-    cmd = sublime -w $MERGED
-    trustExitCode = false
 [merge]
-    tool = sublime
+    tool = vscode
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+    
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 
 # Push easily - http://stackoverflow.com/a/23918418/89484
 [push]
     default = current
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[user]
-	name = Jeroen van Meerendonk
-	email = jeroen.vanmeerendonk@qustodio.com
-[commit]
-	template = /Users/jeroen/.stCommitMsg
