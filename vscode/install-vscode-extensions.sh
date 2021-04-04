@@ -22,5 +22,5 @@ zhuangtongfa.material-theme
 )
 
 for i in ${pkglist[@]}; do
-  code --install-extension $i
+  codium --install-extension $i
 done
