@@ -1,6 +1,5 @@
 {
     "workbench.colorTheme": "One Dark Pro",
-    "window.zoomLevel": 0,
     "editor.minimap.enabled": false,
     "workbench.activityBar.visible": false,
     "explorer.openEditors.visible": 0,
@@ -17,6 +16,9 @@
     ],
     "workbench.preferredDarkColorTheme": "One Dark Pro",
     "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.codeActionsOnSave": {

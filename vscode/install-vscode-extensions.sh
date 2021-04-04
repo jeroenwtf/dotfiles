@@ -12,6 +12,7 @@ dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
 karunamurti.haml
+luongnd.edge
 ms-vsliveshare.vsliveshare
 rebornix.ruby
 sianglim.slim
@@ -22,5 +23,5 @@ zhuangtongfa.material-theme
 )
 
 for i in ${pkglist[@]}; do
-  code --install-extension $i
+  codium --install-extension $i
 done
