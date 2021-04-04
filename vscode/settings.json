@@ -24,5 +24,6 @@
     },
     "eslint.options": {
     
-    }
+    },
+    "explorer.confirmDelete": false
 }
