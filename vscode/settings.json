@@ -25,5 +25,7 @@
     "eslint.options": {
     
     },
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.lineHeight": 20,
+    "editor.fontFamily": "'Hack', 'monospace', monospace, 'Droid Sans Fallback'"
 }
