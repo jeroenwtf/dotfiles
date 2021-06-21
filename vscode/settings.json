@@ -15,10 +15,19 @@
         "overview"
     ],
     "workbench.preferredDarkColorTheme": "One Dark Pro",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
     "eslint.options": {
     
-    }
+    },
+    "explorer.confirmDelete": false,
+    "editor.lineHeight": 20,
+    "editor.fontFamily": "'Hack', 'monospace', monospace, 'Droid Sans Fallback'"
 }

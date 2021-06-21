@@ -2,7 +2,7 @@
 
 # execute command
 # -------------------
-# curl -s https://raw.githubusercontent.com/karaage0703/vscode-dotfiles/master/install-vscode-extensions.sh | /bin/bash
+# curl -s https://raw.githubusercontent.com/jeroenwtf/dotfiles/master/vscode/install-vscode-extensions.sh | /bin/bash
 
 # Visual Studio Code :: Package list
 pkglist=(
@@ -12,6 +12,7 @@ dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
 karunamurti.haml
+luongnd.edge
 ms-vsliveshare.vsliveshare
 rebornix.ruby
 sianglim.slim
@@ -22,5 +23,5 @@ zhuangtongfa.material-theme
 )
 
 for i in ${pkglist[@]}; do
-  code --install-extension $i
+  codium --install-extension $i
 done
