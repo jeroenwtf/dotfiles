@@ -36,15 +36,18 @@ window {
 	location: center;
 	background-color: #282c34dd;
 	width: 40%;
+  border: 4;
+  border-color: @emphasis;
 }
 
 mainbox {
-  childern: [inputbar, message, listview];
+  children: [inputbar, message, listview];
 }
 
 inputbar {
   padding: 20px 20px;
   children: [entry, case-indicator];
+  background-color: @emphasis;
 }
 
 prompt {
@@ -66,11 +69,11 @@ listview {
   spacing: 5px;
 	fixed-height: false;
 	scrollbar: false;
-	lines: 4;
+	lines: 5;
 }
 
 element {
-  padding: 5px;
+  padding: 8px;
   text-color: @text-alt;
   highlight: bold #95ee8f; /* green */
   border-radius: 3px;
