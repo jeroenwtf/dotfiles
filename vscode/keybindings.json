@@ -1,11 +1,11 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
-        "key": "cmd+t",
+        "key": "ctrl+t",
         "command": "workbench.action.quickOpen"
     },
     {
-        "key": "cmd+p",
+        "key": "ctrl+p",
         "command": "-workbench.action.quickOpen"
     },
     {
@@ -14,17 +14,17 @@
         "when": "!terminalFocus"
     },
     {
-        "key": "cmd+d",
+        "key": "ctrl+d",
         "command": "-editor.action.addSelectionToNextFindMatch",
         "when": "editorFocus"
     },
     {
-        "key": "cmd+d",
+        "key": "ctrl+d",
         "command": "editor.action.deleteLines",
         "when": "textInputFocus && !editorReadonly"
     },
     {
-        "key": "shift+cmd+k",
+        "key": "shift+ctrl+k",
         "command": "-editor.action.deleteLines",
         "when": "textInputFocus && !editorReadonly"
     }

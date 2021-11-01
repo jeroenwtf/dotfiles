@@ -18,3 +18,11 @@ set SPACEFISH_PROMPT_ORDER time user dir host git pyenv exec_time line_sep batte
 
 set PATH /home/jeroen/.rvm/bin $PATH
 rvm default
+
+# node memory
+set NODE_OPTIONS "--max-old-space-size=4096"
+set PATH ~/.npm-global/bin $PATH
+set PATH ~/.cargo/bin $PATH
+
+# postres
+set PGUSER "postgres"

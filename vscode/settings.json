@@ -4,8 +4,7 @@
     "workbench.activityBar.visible": false,
     "explorer.openEditors.visible": 0,
     "editor.renderWhitespace": "all",
-    "oneDarkPro.editorTheme": "Onedark Pro",
-    "editor.formatOnSave": true,
+    "oneDarkPro.editorTheme": "One Dark Pro",
     "editor.semanticHighlighting.enabled": false,
     "eslint.format.enable": true,
     "editor.fontSize": 13,
@@ -16,18 +15,35 @@
     ],
     "workbench.preferredDarkColorTheme": "One Dark Pro",
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        // "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.formatOnSave": true
     },
     "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        // "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.formatOnSave": true
     },
+    "[markdown]": {
+        // "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.formatOnSave": true
+    },
+    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": true,
+        "source.fixAll.tslint": true,
+        "source.fixAll.stylelint": true
     },
     "eslint.options": {
     
     },
     "explorer.confirmDelete": false,
     "editor.lineHeight": 20,
-    "editor.fontFamily": "'Hack', 'monospace', monospace, 'Droid Sans Fallback'"
+    "editor.fontFamily": "'Hack', 'monospace', monospace, 'Droid Sans Fallback'",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+        "*.mdx": "markdown"
+    },
+    "window.menuBarVisibility": "toggle",
+    "eslint.alwaysShowStatus": true,
+    "eslint.debug": true
 }
