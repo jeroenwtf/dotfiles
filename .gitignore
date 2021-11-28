@@ -1,2 +1,8 @@
 fish/private_aliases.fish
+fish/functions/
+fish/conf.d/
+fish/fish_variables
+fish/completions
+
 .DS_Store
+

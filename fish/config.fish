@@ -26,3 +26,5 @@ set PATH ~/.cargo/bin $PATH
 
 # postres
 set PGUSER "postgres"
+
+starship init fish | source
