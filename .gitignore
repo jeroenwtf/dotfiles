@@ -1,8 +1,7 @@
-fish/private_aliases.fish
-fish/functions/
-fish/conf.d/
-fish/fish_variables
-fish/completions
+fish
+!fish/config.fish
+!fish/functions/rvm.fish
+!fish/aliases.fish
 
 .DS_Store
 
