@@ -108,6 +108,8 @@ endfunc
 nnoremap <leader>r :call NumberToggle()<cr>
 nnoremap <leader>t <cmd>Telescope find_files<cr>
 nnoremap <leader><tab> <cmd>Telescope buffers<cr>
+nnoremap <leader>w :bd<cr>
+nnoremap <leader>e :Explore<cr>
 
 " show hover doc
 nnoremap <silent>K :Lspsaga hover_doc<CR>

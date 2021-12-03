@@ -1,0 +1,13 @@
+- name: Setup the basics
+  hosts: local
+  roles:
+    - role: base
+
+- name: Setup the work station
+  hosts: local
+  roles:
+    - role: pacman
+    - role: git
+    - role: fish
+    # - role: neovim
+    # - role: aur/yay

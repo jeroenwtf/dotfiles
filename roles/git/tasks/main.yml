@@ -1,0 +1,25 @@
+- name: Link global gitconfig file
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/gitconfig_global.link"
+    dest: "{{ dotfiles_user_home }}/.gitconfig"
+    state: link
+    force: yes
+    follow: false
+
+- name: Link global gitignore file
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/gitignore_global.link"
+    dest: "{{ dotfiles_user_home }}/.gitignore_global"
+    state: link
+    force: yes
+    follow: false
+
+- name: Link global gitattributes file
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/gitattributes_global.link"
+    dest: "{{ dotfiles_user_home }}/.gitattributes_global"
+    state: link
+    force: yes
+    follow: false
+
+# TODO: Generate the .gitconfig.local file

@@ -1,0 +1,14 @@
+
+- name: pacman | update cache
+  become: yes
+  become_user: root
+  community.general.pacman:
+    update_cache: yes
+
+- name: pacman | install tools
+  become: yes
+  become_user: root
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ official_packages }}"

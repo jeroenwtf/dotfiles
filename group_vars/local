@@ -1,0 +1,28 @@
+dotfiles_user_home: "{{ '~' | expanduser }}"
+dotfiles_home: "{{ dotfiles_user_home }}/.dotfiles"
+
+full_name: Jeroen van Meerendonk
+git_user: jeroen
+git_email: hola@jeroen.wtf
+
+base_packages:
+  - curl
+  - htop
+  - wget
+  - git
+
+official_packages:
+  - firefox
+  - neofetch
+  - diff-so-fancy
+  - ttf-hack
+  - kitty
+  - rofi
+  - neovim
+  - fish
+  - starship
+
+aur_packages:
+  - slack-desktop
+  - zoom
+  - nerd-fonts-hack
