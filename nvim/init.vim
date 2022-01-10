@@ -12,6 +12,8 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'terrortylor/nvim-comment'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 "syntax on
@@ -48,6 +50,7 @@ require('lualine').setup {
 }
 require("bufferline").setup()
 require("gitsigns").setup()
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -75,6 +78,9 @@ require('nvim_comment').setup {
 
 local telescope = require('telescope')
 telescope.setup {
+  defaults = {
+    file_ignore_patterns = { "node_modules" }
+  },
   pickers = {
     find_files = {
       hidden = true
@@ -82,6 +88,19 @@ telescope.setup {
   }
 }
 EOF
+
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json']
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/tailwindcss')
+  let g:coc_global_extensions += ['coc-tailwindcss']
+endif
 
 colorscheme onedark
 
@@ -107,13 +126,12 @@ endfunc
 " Toggle between normal and relative numbering.
 nnoremap <leader>r :call NumberToggle()<cr>
 nnoremap <leader>t <cmd>Telescope find_files<cr>
+nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader><tab> <cmd>Telescope buffers<cr>
 nnoremap <leader>w :bd<cr>
 nnoremap <leader>e :Explore<cr>
-
-" show hover doc
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-inoremap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
+nnoremap <leader>[ :BufferLineCyclePrev<cr>
+nnoremap <leader>] :BufferLineCycleNext<cr>
 
 " settings for njk
 au BufRead,BufNewFile *.njk,*.hbs set ft=html
