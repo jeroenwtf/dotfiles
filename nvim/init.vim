@@ -10,15 +10,8 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
 Plug 'terrortylor/nvim-comment'
-
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -26,6 +19,7 @@ call plug#end()
 "let g:onedark_termcolors=16
 "colorscheme onedark
 
+set clipboard+=unnamedplus
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
@@ -38,6 +32,7 @@ set list listchars=tab:>-,trail:.,extends:>
 set mouse=a " Enable mouse in all in all modes
 set number          " show line number
 set scrolloff=10     " Minimal number of screen lines to keep above and below the cursor
+set sidescrolloff=5    " Same but horizontally
 set showmatch       " highlight matching brace
 set smartcase       " ... unless the query has capital letters.
 set completeopt=menu,menuone,noselect
@@ -56,6 +51,7 @@ require('lualine').setup {
 }
 require("bufferline").setup()
 require("gitsigns").setup()
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -77,74 +73,37 @@ require'nvim-treesitter.configs'.setup {
 }
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
-
-
 require('nvim_comment').setup {
   line_mapping = "<C-_>"
 }
 
-  -- Setup nvim-cmp.
-  local cmp = require'cmp'
-
-  cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
-      end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
-    sources = {
-      { name = 'buffer' }
+local telescope = require('telescope')
+telescope.setup {
+  defaults = {
+    layout_strategy = "vertical",
+    file_ignore_patterns = { "node_modules" },
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
     }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-
-  -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-require'lspinstall'.setup()
-local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
-  require'lspconfig'[server].setup{
-    capabilities = capabilities
   }
-end
+}
 EOF
+
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-stylelintplus']
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/tailwindcss')
+  let g:coc_global_extensions += ['coc-tailwindcss']
+endif
 
 colorscheme onedark
 
@@ -170,11 +129,14 @@ endfunc
 " Toggle between normal and relative numbering.
 nnoremap <leader>r :call NumberToggle()<cr>
 nnoremap <leader>t <cmd>Telescope find_files<cr>
+nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader><tab> <cmd>Telescope buffers<cr>
-
-" show hover doc
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-inoremap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
+nnoremap <leader>w :bd<cr>
+nnoremap <leader>e :Explore<cr>
+nnoremap <leader>[ :BufferLineCyclePrev<cr>
+nnoremap <leader>] :BufferLineCycleNext<cr>
+nnoremap <leader>p :let @+=expand("%")<cr>
+nnoremap <leader>P :CocCommand prettier.formatFile<cr>
 
 " settings for njk
 au BufRead,BufNewFile *.njk,*.hbs set ft=html
