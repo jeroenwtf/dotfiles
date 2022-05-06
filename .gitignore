@@ -1,2 +1,5 @@
-fish/private_aliases.fish
 .DS_Store
+
+fish/*
+!fish/config.fish
+!fish/fish_plugins
