@@ -12,6 +12,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'terrortylor/nvim-comment'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-eunuch'
 
 call plug#end()
 
