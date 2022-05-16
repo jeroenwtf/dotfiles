@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'monsonjeremy/onedark.nvim'
+" Plug 'monsonjeremy/onedark.nvim'
+Plug 'sainnhe/gruvbox-material'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -16,9 +17,11 @@ Plug 'tpope/vim-eunuch'
 
 call plug#end()
 
-"syntax on
-"let g:onedark_termcolors=16
-"colorscheme onedark
+if has('termguicolors')
+  set termguicolors
+endif
+set background=dark
+colorscheme gruvbox-material
 
 set clipboard+=unnamedplus
 set tabstop=2 softtabstop=2
@@ -43,11 +46,9 @@ set completeopt=menu,menuone,noselect
 
 " Lualine
 lua << EOF
-vim.opt.termguicolors = true
-require('onedark').setup()
 require('lualine').setup {
   options = {
-    theme = 'onedark',
+    theme = 'gruvbox-material',
   },
 }
 require("bufferline").setup()
@@ -105,8 +106,6 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/tailwindcss')
   let g:coc_global_extensions += ['coc-tailwindcss']
 endif
-
-colorscheme onedark
 
 let mapleader = "\<Space>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
