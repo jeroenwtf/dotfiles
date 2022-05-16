@@ -1,48 +1,53 @@
 # Local config - username, tokens, etc.
 [include]
-    path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
 
 [core]
-	excludesfile = /Users/jeroen/.gitignore_global
-    attributesfile = ~/.gitattributes
-	autocrlf = false
-	safecrlf = false
-    editor = nano
-    pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = /Users/jeroen/.gitignore_global
+  attributesfile = ~/.gitattributes
+  autocrlf = false
+  safecrlf = false
+  editor = nano
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [alias]
-    slog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    co = checkout
+  slog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  co = checkout
 
 [color]
-    branch = auto
-    diff = auto
-    status = auto
-    ui = auto
+  branch = auto
+  diff = auto
+  status = auto
+  ui = auto
+
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
+
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 
 [merge]
-    tool = vscode
+  tool = vscode
+
 [mergetool "vscode"]
-    cmd = codium --wait $MERGED
-    
+  cmd = codium --wait $MERGED
+
 [diff]
-    tool = vscode
+  tool = vscode
+
 [difftool "vscode"]
-    cmd = codium --wait --diff $LOCAL $REMOTE
+  cmd = codium --wait --diff $LOCAL $REMOTE
 
 # Push easily - http://stackoverflow.com/a/23918418/89484
 [push]
-    default = current
+  default = current
