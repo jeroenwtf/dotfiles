@@ -40,7 +40,7 @@ end
 
 # ~/.config/fish/config.fish
 # You must call it on initialization or listening to directory switching won't work
-load_nvm > /dev/stderr
+#load_nvm > /dev/stderr
 
 # Removes fish greeting
 set -g -x fish_greeting ''
@@ -57,3 +57,5 @@ set PATH ~/.cargo/bin $PATH
 set PGUSER "postgres"
 
 starship init fish | source
+
+load_nvm
