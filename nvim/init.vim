@@ -14,6 +14,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'terrortylor/nvim-comment'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -60,7 +61,7 @@ require'nvim-treesitter.configs'.setup {
     disable = {},
   },
   indent = {
-    enable = false,
+    enable = true,
     disable = {},
   },
   ensure_installed = {
@@ -82,8 +83,7 @@ require('nvim_comment').setup {
 local telescope = require('telescope')
 telescope.setup {
   defaults = {
-    layout_strategy = "vertical",
-    file_ignore_patterns = { "node_modules" },
+    file_ignore_patterns = { "node_modules", ".git/" },
   },
   pickers = {
     find_files = {
@@ -137,6 +137,8 @@ nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
 nnoremap <leader>P :CocCommand prettier.formatFile<cr>
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " settings for njk
 au BufRead,BufNewFile *.njk,*.hbs set ft=html
