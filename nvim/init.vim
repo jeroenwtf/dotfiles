@@ -132,6 +132,8 @@ nnoremap <leader>t <cmd>Telescope find_files<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader><tab> <cmd>Telescope buffers<cr>
 nnoremap <leader>w :bd<cr>
+" Close all buffers
+nnoremap <leader>W :%bd<cr>
 nnoremap <leader>e :Explore<cr>
 nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
