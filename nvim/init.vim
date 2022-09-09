@@ -9,12 +9,13 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'terrortylor/nvim-comment'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'numToStr/Comment.nvim'
 
 call plug#end()
 
@@ -76,12 +77,7 @@ require'nvim-treesitter.configs'.setup {
 }
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
-require('nvim_comment').setup {
-  line_mapping = "<C-_>"
-}
-
-local telescope = require('telescope')
-telescope.setup {
+require('telescope').setup {
   defaults = {
     file_ignore_patterns = { "node_modules", ".git/" },
   },
@@ -89,8 +85,18 @@ telescope.setup {
     find_files = {
       hidden = true,
     }
-  }
+  },
+  extensions = {
+    file_browser = {
+      grouped = true,
+      sorting_strategy = 'ascending',
+    },
+  },
 }
+
+require("telescope").load_extension "file_browser"
+
+require('Comment').setup()
 EOF
 
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-stylelintplus']
@@ -134,7 +140,8 @@ nnoremap <leader><tab> <cmd>Telescope buffers<cr>
 nnoremap <leader>w :bd<cr>
 " Close all buffers
 nnoremap <leader>W :%bd<cr>
-nnoremap <leader>e :Explore<cr>
+" nnoremap <leader>e :Explore<cr>
+nnoremap <leader>e :Telescope file_browser<cr>
 nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
