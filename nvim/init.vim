@@ -141,7 +141,7 @@ nnoremap <leader>w :bd<cr>
 " Close all buffers
 nnoremap <leader>W :%bd<cr>
 " nnoremap <leader>e :Explore<cr>
-nnoremap <leader>e :Telescope file_browser<cr>
+nnoremap <leader>e :Telescope file_browser path=%:p:h<cr>
 nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
