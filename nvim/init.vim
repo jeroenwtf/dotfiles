@@ -141,7 +141,7 @@ nnoremap <leader>e :Telescope file_browser path=%:p:h<cr>
 nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
-nnoremap <leader>P :CocCommand prettier.formatFile<cr>
+nnoremap <leader>P :CocCommand eslint.executeAutofix<cr>
 
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
