@@ -1,4 +1,5 @@
 {
   "stylelintplus.autoFixOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript"]
+  "javascript.suggestionActions.enabled": false,
+  "eslint.autoFixOnSave": true
 }

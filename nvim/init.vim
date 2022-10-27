@@ -99,14 +99,10 @@ require("telescope").load_extension "file_browser"
 require('Comment').setup()
 EOF
 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-stylelintplus']
+let g:coc_global_extensions = ['coc-json', 'coc-stylelintplus', 'coc-eslint', 'coc-tsserver']
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
 endif
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/tailwindcss')
