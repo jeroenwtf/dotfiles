@@ -1,4 +1,5 @@
 {
   "stylelintplus.autoFixOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript"]
+  "coc.preferences.formatOnSaveFiletypes": ["javascript"],
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }
