@@ -99,14 +99,10 @@ require("telescope").load_extension "file_browser"
 require('Comment').setup()
 EOF
 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-stylelintplus']
+let g:coc_global_extensions = ['coc-json', 'coc-stylelintplus', 'coc-eslint', 'coc-tsserver']
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
 endif
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/tailwindcss')
@@ -145,7 +141,7 @@ nnoremap <leader>e :Telescope file_browser path=%:p:h<cr>
 nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
-nnoremap <leader>P :CocCommand prettier.formatFile<cr>
+nnoremap <leader>P :CocCommand eslint.executeAutofix<cr>
 
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 

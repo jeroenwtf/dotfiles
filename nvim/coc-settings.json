@@ -1,5 +1,6 @@
 {
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "stylelintplus.autoFixOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript"],
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "javascript.suggestionActions.enabled": false,
+  "eslint.autoFixOnSave": true
 }
