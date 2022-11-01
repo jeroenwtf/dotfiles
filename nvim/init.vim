@@ -26,6 +26,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'numToStr/Comment.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 
@@ -179,6 +180,11 @@ null_ls.setup({
     end
   end,
 })
+
+require("indent_blankline").setup {
+  show_current_context = true,
+  show_current_context_start = true,
+}
 
 EOF
 
