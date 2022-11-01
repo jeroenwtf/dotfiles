@@ -1,6 +1,0 @@
-{
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "stylelintplus.autoFixOnSave": true,
-  "javascript.suggestionActions.enabled": false,
-  "eslint.autoFixOnSave": true
-}
