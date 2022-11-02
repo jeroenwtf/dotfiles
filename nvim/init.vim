@@ -27,6 +27,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'numToStr/Comment.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 call plug#end()
 
@@ -184,6 +185,14 @@ null_ls.setup({
 require("indent_blankline").setup {
   show_current_context = true,
   show_current_context_start = true,
+}
+
+require("toggleterm").setup {
+  open_mapping = [[<c-\>]],
+  direction = 'float',
+  float_opts = {
+    border = 'curved',
+  },
 }
 
 EOF
