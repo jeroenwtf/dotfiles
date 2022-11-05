@@ -23,6 +23,11 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
+
+Plug 'rafamadriz/friendly-snippets'
+
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'numToStr/Comment.nvim'
@@ -195,6 +200,26 @@ require("toggleterm").setup {
   },
 }
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup {
+    update_focused_file = {
+    enable = true,
+  },
+}
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+local luasnip = require('luasnip')
+luasnip.filetype_extend("ruby", {"rails"})
+luasnip.filetype_extend('javascript', { 'javascriptreact' })
+
 EOF
 
 let mapleader = "\<Space>"
@@ -228,7 +253,7 @@ nnoremap <leader>e :Telescope file_browser path=%:p:h<cr>
 nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
-nnoremap <leader>P :CocCommand eslint.executeAutofix<cr>
+nnoremap <leader>s :NvimTreeFindFileToggle<cr>
 
 " settings for njk
 au BufRead,BufNewFile *.njk,*.hbs set ft=html
