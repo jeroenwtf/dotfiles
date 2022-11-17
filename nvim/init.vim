@@ -90,6 +90,7 @@ require'nvim-treesitter.configs'.setup {
     "html",
     "ruby",
     "scss",
+    "astro",
   },
 }
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
@@ -119,7 +120,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-  ensure_installed = { "tsserver", "eslint", "tailwindcss" },
+  ensure_installed = { "tsserver", "eslint", "tailwindcss", "astro" },
 }
 
 local nvim_lsp = require "lspconfig"
@@ -258,3 +259,4 @@ nnoremap <leader>s :NvimTreeFindFileToggle<cr>
 
 " settings for njk
 au BufRead,BufNewFile *.njk,*.hbs set ft=html
+autocmd BufRead,BufEnter *.astro set filetype=astro
