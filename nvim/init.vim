@@ -33,6 +33,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'numToStr/Comment.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'famiu/bufdelete.nvim'
 
 call plug#end()
 
@@ -246,7 +247,7 @@ nnoremap <leader>l :call NumberToggle()<cr>
 nnoremap <leader>t <cmd>Telescope find_files<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader><tab> <cmd>Telescope buffers<cr>
-nnoremap <leader>w :bd<cr>
+nnoremap <leader>w :Bdelete<cr>
 " Close all buffers
 nnoremap <leader>W :%bd<cr>
 " nnoremap <leader>e :Explore<cr>
