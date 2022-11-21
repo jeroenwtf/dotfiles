@@ -92,6 +92,7 @@ require'nvim-treesitter.configs'.setup {
     "ruby",
     "scss",
     "astro",
+    "prisma",
   },
 }
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
@@ -121,10 +122,12 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-  ensure_installed = { "tsserver", "eslint", "tailwindcss", "astro" },
+  ensure_installed = { "tsserver", "eslint", "tailwindcss", "astro", "prismals" },
 }
 
 local nvim_lsp = require "lspconfig"
+nvim_lsp.astro.setup {}
+nvim_lsp.prismals.setup {}
 nvim_lsp.tailwindcss.setup {}
 nvim_lsp.tsserver.setup{
   capabilities = capabilities,
@@ -171,6 +174,7 @@ null_ls.setup({
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.formatting.prettierd.with({
       -- only_local = "node_modules/.bin",
+      extra_filetypes = { "prisma" },
       condition = function(utils)
         return utils.root_has_file({ ".prettierrc.json" })
       end,
