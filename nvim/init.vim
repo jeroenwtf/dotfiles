@@ -85,6 +85,7 @@ require'nvim-treesitter.configs'.setup {
   },
   ensure_installed = {
     "javascript",
+    "typescript",
     "yaml",
     "fish",
     "json",
@@ -129,8 +130,10 @@ local nvim_lsp = require "lspconfig"
 nvim_lsp.astro.setup {}
 nvim_lsp.prismals.setup {}
 nvim_lsp.tailwindcss.setup {}
-nvim_lsp.tsserver.setup{
+nvim_lsp.tsserver.setup {
   capabilities = capabilities,
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
   on_attach = function()
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
