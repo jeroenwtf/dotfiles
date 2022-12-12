@@ -94,6 +94,7 @@ require'nvim-treesitter.configs'.setup {
     "ruby",
     "scss",
     "astro",
+    "markdown",
     "prisma",
   },
 }
@@ -265,7 +266,11 @@ nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
 nnoremap <leader>s :NvimTreeFindFileToggle<cr>
+nnoremap <leader>a :NvimTreeFocus<cr>
+" Prevents yanking when pasting something over
+vnoremap p "_dP
 
 " settings for njk
 au BufRead,BufNewFile *.njk,*.hbs set ft=html
 autocmd BufRead,BufEnter *.astro set filetype=astro
+autocmd BufRead,BufEnter *.mdx set filetype=markdown
