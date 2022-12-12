@@ -201,7 +201,7 @@ require("indent_blankline").setup {
 }
 
 require("toggleterm").setup {
-  open_mapping = [[<c-\>]],
+  open_mapping = [[<leader>\]],
   direction = 'float',
   float_opts = {
     border = 'curved',
