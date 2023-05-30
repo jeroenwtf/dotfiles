@@ -10,12 +10,30 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
-Plug 'liuchengxu/vim-which-key'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
+
+Plug 'rafamadriz/friendly-snippets'
+
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'numToStr/Comment.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'famiu/bufdelete.nvim'
 
 call plug#end()
 
@@ -67,12 +85,17 @@ require'nvim-treesitter.configs'.setup {
   },
   ensure_installed = {
     "javascript",
+    "typescript",
+    "tsx",
     "yaml",
     "fish",
     "json",
     "html",
     "ruby",
     "scss",
+    "astro",
+    "markdown",
+    "prisma",
   },
 }
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
@@ -97,20 +120,121 @@ require('telescope').setup {
 require("telescope").load_extension "file_browser"
 
 require('Comment').setup()
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require("mason").setup()
+require("mason-lspconfig").setup {
+  ensure_installed = { "tsserver", "eslint", "tailwindcss", "astro", "prismals" },
+}
+
+local nvim_lsp = require "lspconfig"
+nvim_lsp.astro.setup {}
+nvim_lsp.prismals.setup {}
+nvim_lsp.tailwindcss.setup {}
+nvim_lsp.tsserver.setup {
+  capabilities = capabilities,
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+  on_attach = function()
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
+    vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', {buffer=0})
+    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {buffer=0})
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {buffer=0})
+  end
+}
+
+vim.opt.completeopt={"menu", "menuone", "noselect"}
+
+-- Set up nvim-cmp.
+local cmp = require('cmp')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' }, -- For luasnip users.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+local null_ls = require('null-ls')
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.formatting.prettierd.with({
+      -- only_local = "node_modules/.bin",
+      extra_filetypes = { "prisma" },
+      condition = function(utils)
+        return utils.root_has_file({ ".prettierrc.json" })
+      end,
+    }),
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 10000 })
+        end,
+      })
+    end
+  end,
+})
+
+require("indent_blankline").setup {
+  show_current_context = true,
+  show_current_context_start = true,
+}
+
+require("toggleterm").setup {
+  open_mapping = [[<leader>\]],
+  direction = 'float',
+  float_opts = {
+    border = 'curved',
+  },
+}
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup {
+    update_focused_file = {
+    enable = true,
+  },
+}
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+local luasnip = require('luasnip')
+luasnip.filetype_extend("ruby", {"rails"})
+luasnip.filetype_extend('javascript', { 'javascriptreact' })
+
 EOF
 
-let g:coc_global_extensions = ['coc-json', 'coc-stylelintplus', 'coc-eslint', 'coc-tsserver']
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/tailwindcss')
-  let g:coc_global_extensions += ['coc-tailwindcss']
-endif
-
 let mapleader = "\<Space>"
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
 " Get off my lawn
 nnoremap <Left> :echoe "Use h"<CR>
@@ -129,11 +253,11 @@ function! NumberToggle()
 endfunc
 
 " Toggle between normal and relative numbering.
-nnoremap <leader>r :call NumberToggle()<cr>
+nnoremap <leader>l :call NumberToggle()<cr>
 nnoremap <leader>t <cmd>Telescope find_files<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader><tab> <cmd>Telescope buffers<cr>
-nnoremap <leader>w :bd<cr>
+nnoremap <leader>w :Bdelete<cr>
 " Close all buffers
 nnoremap <leader>W :%bd<cr>
 " nnoremap <leader>e :Explore<cr>
@@ -141,9 +265,12 @@ nnoremap <leader>e :Telescope file_browser path=%:p:h<cr>
 nnoremap <leader>[ :BufferLineCyclePrev<cr>
 nnoremap <leader>] :BufferLineCycleNext<cr>
 nnoremap <leader>p :let @+=expand("%")<cr>
-nnoremap <leader>P :CocCommand eslint.executeAutofix<cr>
-
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nnoremap <leader>s :NvimTreeFindFileToggle<cr>
+nnoremap <leader>a :NvimTreeFocus<cr>
+" Prevents yanking when pasting something over
+vnoremap p "_dP
 
 " settings for njk
 au BufRead,BufNewFile *.njk,*.hbs set ft=html
+autocmd BufRead,BufEnter *.astro set filetype=astro
+autocmd BufRead,BufEnter *.mdx set filetype=markdown
