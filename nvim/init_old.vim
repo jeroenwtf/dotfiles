@@ -132,6 +132,7 @@ local nvim_lsp = require "lspconfig"
 nvim_lsp.astro.setup {}
 nvim_lsp.prismals.setup {}
 nvim_lsp.tailwindcss.setup {}
+nvim_lsp.eslint.setup {}
 nvim_lsp.tsserver.setup {
   capabilities = capabilities,
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx" },
