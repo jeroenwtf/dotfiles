@@ -21,7 +21,7 @@ bash < ./rvm-install
 ## Install everything together
 One command for `pacman` stuff.
 ```
-sudo pacman -S fish fisher starship thefuck nodejs npm diff-so-fancy
+sudo pacman -S fish fisher starship thefuck nodejs npm diff-so-fancy spotify-launcher
 ```
 Don't forget that you will have to install the Fisher plugins and the Hack patched font.
 
@@ -66,4 +66,19 @@ yay -S ttf-hack-nerd
 Install `diff-so-fancy`
 ```
 sudo pacman -S diff-so-fancy
+```
+
+Install Spotify
+```
+sudo pacman -S spotify-launcher
+```
+
+Install Slack
+```
+yay -S slack-desktop
+```
+
+Install Ferdium
+```
+yay -S ferdium-bin
 ```
