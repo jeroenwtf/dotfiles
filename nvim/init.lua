@@ -70,8 +70,10 @@ require('lazy').setup({
     },
   },
 
+  { 'jose-elias-alvarez/null-ls.nvim' },
+
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',         opts = {} },
+  { 'folke/which-key.nvim',           opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -108,7 +110,11 @@ require('lazy').setup({
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("nvim-tree").setup {}
+      require("nvim-tree").setup {
+        update_focused_file = {
+          enable = true,
+        }
+      }
     end,
   },
 
@@ -237,6 +243,11 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+vim.keymap.set('n', '<leader>e', ':NvimTreeFocus<cr>', { desc = '[e] Opens the sidebar' })
+vim.keymap.set('n', '<leader>w', ':bd<cr>', { desc = '[e] Opens the sidebar' })
+vim.keymap.set('n', '<leader>[', ':BufferLineCyclePrev<cr>', { desc = '[[] Moves to previous buffer' })
+vim.keymap.set('n', '<leader>]', ':BufferLineCycleNext<cr>', { desc = '[]] Moves to next buffer' })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -279,18 +290,18 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>t', require('telescope.builtin').find_files, { desc = 'Search Files' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').live_grep, { desc = 'Search by Grep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'javascript', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc',
-    'vim' },
+  ensure_installed = { 'c', 'cpp', 'css', 'go', 'javascript', 'lua', 'python', 'rust', 'scss', 'tsx', 'typescript',
+    'vimdoc', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -355,7 +366,7 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Configure LSP ]]
@@ -421,6 +432,14 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
+  stylelint_lsp = {
+    settings = {
+      stylelintplus = {
+        autoFixOnSave = true,
+        autoFixOnFormat = true,
+      },
+    },
+  },
 
   lua_ls = {
     Lua = {
@@ -501,6 +520,29 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+local null_ls = require('null-ls')
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.formatting.stylelint,
+    null_ls.builtins.diagnostics.stylelint,
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 10000 })
+        end,
+      })
+    end
+  end,
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
