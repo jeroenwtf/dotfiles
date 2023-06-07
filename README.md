@@ -87,3 +87,8 @@ Install ripgrep
 ```
 sudo pacman -S ripgrep
 ```
+
+Install git-recent
+```
+npm install --global git-recent
+```
