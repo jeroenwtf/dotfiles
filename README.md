@@ -21,7 +21,7 @@ bash < ./rvm-install
 ## Install everything together
 One command for `pacman` stuff.
 ```
-sudo pacman -S fish fisher starship thefuck nodejs npm diff-so-fancy spotify-launcher ripgrep
+sudo pacman -S fish fisher starship thefuck nodejs npm diff-so-fancy spotify-launcher ripgrep xclip
 ```
 Don't forget that you will have to install the Fisher plugins and the Hack patched font.
 
@@ -91,4 +91,9 @@ sudo pacman -S ripgrep
 Install git-recent
 ```
 npm install --global git-recent
+```
+
+Install xclip
+```
+sudo pacman -S xclip
 ```
