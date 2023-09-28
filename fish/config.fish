@@ -17,6 +17,7 @@ rvm default
 set NODE_OPTIONS "--max-old-space-size=4096"
 set PATH ~/.npm-global/bin $PATH
 set PATH ~/.cargo/bin $PATH
+set XDG_CONFIG_HOME ~/.config
 
 # postres
 set PGUSER "postgres"

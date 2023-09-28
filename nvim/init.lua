@@ -247,6 +247,7 @@ vim.keymap.set('n', '<leader>e', ':NvimTreeFocus<cr>', { desc = '[e] Opens the s
 vim.keymap.set('n', '<leader>w', ':bd<cr>', { desc = '[e] Opens the sidebar' })
 vim.keymap.set('n', '<leader>[', ':BufferLineCyclePrev<cr>', { desc = '[[] Moves to previous buffer' })
 vim.keymap.set('n', '<leader>]', ':BufferLineCycleNext<cr>', { desc = '[]] Moves to next buffer' })
+vim.keymap.set('n', '<leader>p', ':let @+=expand("%")<cr>', { desc = 'Copy current [P]ath' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
