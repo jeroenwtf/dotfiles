@@ -10,8 +10,8 @@ source $HOME/.dotfiles/fish/aliases.fish
 # Removes fish greeting
 set -g -x fish_greeting ''
 
-set PATH /home/jeroen/.rvm/bin $PATH
-rvm default
+#set PATH /home/jeroen/.rvm/bin $PATH
+#rvm default
 
 # node memory
 set NODE_OPTIONS "--max-old-space-size=4096"
