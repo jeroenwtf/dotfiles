@@ -40,13 +40,13 @@
   tool = vscode
 
 [mergetool "vscode"]
-  cmd = codium --wait $MERGED
+  cmd = code --wait $MERGED
 
 [diff]
   tool = vscode
 
 [difftool "vscode"]
-  cmd = codium --wait --diff $LOCAL $REMOTE
+  cmd = code --wait --diff $LOCAL $REMOTE
 
 # Push easily - http://stackoverflow.com/a/23918418/89484
 [push]
