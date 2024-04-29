@@ -22,4 +22,10 @@ set XDG_CONFIG_HOME ~/.config
 # postres
 set PGUSER "postgres"
 
+#rbenv
+#status --is-interactive; and ~/.rbenv/bin/rbenv init - fish | source
+
+set -x PATH $HOME/.rbenv/bin $PATH
+rbenv init - | source
+
 starship init fish | source
