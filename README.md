@@ -11,7 +11,13 @@ ln -s ~/.dotfiles/fish ~/.config/fish
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ```
 
-Create a `.gitconfig.local` file with the user name and email.
+Create a `.gitconfig.local` file with the user name and email like the following:
+
+```
+[user]
+  name = Jeroen van Meerendonk
+  email = hola@jeroen.wtf
+```
 
 ## Install RVM
 
