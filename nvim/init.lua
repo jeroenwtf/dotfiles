@@ -583,6 +583,7 @@ require('lazy').setup({
 
       require('mini.bufremove').setup()
       require('mini.tabline').setup()
+      require('mini.move').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
