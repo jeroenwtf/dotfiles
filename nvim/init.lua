@@ -8,7 +8,7 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- No swap file
 vim.opt.swapfile = false
@@ -69,6 +69,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>w', '<cmd>lua MiniBufremove.delete()<CR>', { desc = 'Close current buffer' })
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set('n', '<leader>l', '<cmd>lua NumberToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -92,6 +93,15 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
+-- Relative numbering toggle function
+function NumberToggle()
+  if vim.wo.relativenumber then
+    vim.wo.relativenumber = false
+    vim.wo.number = true
+  else
+    vim.wo.relativenumber = true
+  end
+end
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -234,7 +244,6 @@ require('lazy').setup({
           { '<leader>d', group = '[D]ocument' },
           { '<leader>r', group = '[R]ename' },
           { '<leader>s', group = '[S]earch' },
-          { '<leader>t', group = '[T]oggle' },
           { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         },
       }
