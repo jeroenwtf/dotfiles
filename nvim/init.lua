@@ -8,7 +8,7 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- No swap file
 vim.opt.swapfile = false
@@ -69,6 +69,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>w', '<cmd>lua MiniBufremove.delete()<CR>', { desc = 'Close current buffer' })
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set('n', '<leader>l', '<cmd>lua NumberToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -92,6 +93,15 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
+-- Relative numbering toggle function
+function NumberToggle()
+  if vim.wo.relativenumber then
+    vim.wo.relativenumber = false
+    vim.wo.number = true
+  else
+    vim.wo.relativenumber = true
+  end
+end
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -154,6 +164,10 @@ require('lazy').setup({
     config = function()
       require('neo-tree').setup {
         filesystem = {
+          filtered_items = {
+            hide_dotfiles = false,
+            never_show = { '.git' },
+          },
           follow_current_file = {
             enabled = true,
           },
@@ -166,6 +180,31 @@ require('lazy').setup({
     'windwp/nvim-ts-autotag',
     config = function()
       require('nvim-ts-autotag').setup()
+    end,
+  },
+
+  {
+    'akinsho/git-conflict.nvim',
+    version = '*',
+    config = function()
+      require('git-conflict').setup {
+        default_mappings = false,
+        default_commands = true,
+        disable_diagnostics = false,
+        list_opener = 'copen',
+        highlights = {
+          incoming = 'DiffAdd',
+          current = 'DiffText',
+        },
+        debug = false,
+      }
+
+      vim.keymap.set('n', 'xo', '<Plug>(git-conflict-ours)')
+      vim.keymap.set('n', 'xt', '<Plug>(git-conflict-theirs)')
+      vim.keymap.set('n', 'xb', '<Plug>(git-conflict-both)')
+      vim.keymap.set('n', 'x0', '<Plug>(git-conflict-none)')
+      vim.keymap.set('n', 'xp', '<Plug>(git-conflict-prev-conflict)')
+      vim.keymap.set('n', 'xn', '<Plug>(git-conflict-next-conflict)')
     end,
   },
 
@@ -206,6 +245,7 @@ require('lazy').setup({
           { '<leader>r', group = '[R]ename' },
           { '<leader>s', group = '[S]earch' },
           { '<leader>t', group = '[T]oggle' },
+          { '<leader>x', group = '[X] Git conflict' },
           { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         },
       }
@@ -262,7 +302,7 @@ require('lazy').setup({
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>t', builtin.find_files, { desc = 'Search files [t]' })
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -394,6 +434,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'eslint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -403,6 +444,18 @@ require('lazy').setup({
             local server = servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
+          end,
+
+          ['eslint'] = function()
+            require('lspconfig').eslint.setup {
+              capabilities = capabilities,
+              on_attach = function(client, bufnr)
+                vim.api.nvim_create_autocmd('BufWritePre', {
+                  buffer = bufnr,
+                  command = 'EslintFixAll',
+                })
+              end,
+            }
           end,
         },
       }
@@ -570,6 +623,7 @@ require('lazy').setup({
 
       require('mini.bufremove').setup()
       require('mini.tabline').setup()
+      require('mini.move').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
