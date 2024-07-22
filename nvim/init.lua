@@ -166,6 +166,7 @@ require('lazy').setup({
         filesystem = {
           filtered_items = {
             hide_dotfiles = false,
+            hide_gitignored = false,
             never_show = { '.git' },
           },
           follow_current_file = {
@@ -412,6 +413,7 @@ require('lazy').setup({
         tailwindcss = {},
         tsserver = {},
         cssls = {},
+        yamlls = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -633,7 +635,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'ruby', 'javascript', 'typescript' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'ruby', 'javascript', 'typescript', 'yaml' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {

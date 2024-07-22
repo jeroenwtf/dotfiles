@@ -46,3 +46,10 @@ Install `git-recent`
 ```
 npm install --global git-recent
 ```
+
+Install language servers
+
+```
+npm install --global yaml-language-server
+- ts/js?
+```
