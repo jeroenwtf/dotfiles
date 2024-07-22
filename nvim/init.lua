@@ -169,6 +169,7 @@ require('lazy').setup({
             hide_gitignored = false,
             never_show = { '.git' },
           },
+          use_libuv_file_watcher = true,
           follow_current_file = {
             enabled = true,
           },
