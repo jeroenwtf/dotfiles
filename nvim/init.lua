@@ -48,7 +48,11 @@ vim.opt.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '— ', trail = '·', nbsp = '␣' }
+
+-- About tabs size
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -415,6 +419,9 @@ require('lazy').setup({
         tsserver = {},
         cssls = {},
         yamlls = {},
+        eslint = {},
+        docker_compose_language_service = {},
+        astro = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -437,7 +444,6 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'eslint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -479,6 +485,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        javascript = { 'prettierd' },
       },
     },
   },
@@ -636,7 +643,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'ruby', 'javascript', 'typescript', 'yaml' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'ruby', 'javascript', 'typescript', 'yaml', 'astro' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {

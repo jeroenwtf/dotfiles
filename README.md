@@ -47,9 +47,15 @@ Install `git-recent`
 npm install --global git-recent
 ```
 
-Install language servers
+Install node packages
 
 ```
-npm install --global yaml-language-server
+# Language servers
+npm install -g yaml-language-server
+npm install -g @microsoft/compose-language-service
+npm install -g @astrojs/language-server
 - ts/js?
+
+# Other daemons
+npm install -g @fsouza/prettierd
 ```
