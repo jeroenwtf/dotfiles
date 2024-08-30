@@ -12,6 +12,7 @@
 
 [alias]
   slog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  sadd = !sh -c 'cd -- ${GIT_PREFIX:-.} && git add -- "$@" && git status' --
   co = checkout
 
 [color]
@@ -37,17 +38,22 @@
   untracked = cyan
 
 [merge]
-  tool = vscode
+  tool = neovim
 
-[mergetool "vscode"]
-  cmd = code --wait $MERGED
+[mergetool "neovim"]
+  cmd = nvim --wait $MERGED
 
 [diff]
-  tool = vscode
+  tool = neovim
 
-[difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+[difftool "neovim"]
+  cmd = nvim --wait --diff $LOCAL $REMOTE
 
 # Push easily - http://stackoverflow.com/a/23918418/89484
 [push]
   default = current
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

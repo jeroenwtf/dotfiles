@@ -11,13 +11,12 @@ ln -s ~/.dotfiles/fish ~/.config/fish
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ```
 
-Create a `.gitconfig.local` file with the user name and email.
-
-## Install RVM
+Create a `.gitconfig.local` file with the user name and email like the following:
 
 ```
-curl -L get.rvm.io > rvm-install
-bash < ./rvm-install
+[user]
+  name = Jeroen van Meerendonk
+  email = hola@jeroen.wtf
 ```
 
 ## Install all the packages
@@ -32,11 +31,24 @@ yay -S --needed - < aur.pkgs
 Install `node` and `npm`
 
 ```
-nvm install node
+mise use -g node
 ```
 
 Install `git-recent`
 
 ```
 npm install --global git-recent
+```
+
+Install node packages
+
+```
+# Language servers
+npm install -g yaml-language-server
+npm install -g @microsoft/compose-language-service
+npm install -g @astrojs/language-server
+- ts/js?
+
+# Other daemons
+npm install -g @fsouza/prettierd
 ```
