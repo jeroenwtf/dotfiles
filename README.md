@@ -19,13 +19,6 @@ Create a `.gitconfig.local` file with the user name and email like the following
   email = hola@jeroen.wtf
 ```
 
-## Install RVM
-
-```
-curl -L get.rvm.io > rvm-install
-bash < ./rvm-install
-```
-
 ## Install all the packages
 
 ```
@@ -38,7 +31,7 @@ yay -S --needed - < aur.pkgs
 Install `node` and `npm`
 
 ```
-nvm install node
+mise use -g node
 ```
 
 Install `git-recent`
