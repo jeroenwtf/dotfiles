@@ -7,6 +7,7 @@ set PGUSER "postgres"
 
 # PATH
 set PATH ~/.npm-global/bin $PATH
+set PATH ~/.npm/bin $PATH
 set PATH ~/.cargo/bin $PATH
 
 # Sources
