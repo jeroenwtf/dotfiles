@@ -75,6 +75,9 @@ vim.keymap.set('n', '<leader>s', '<cmd>w<CR><esc>', { desc = '[S]ave file' })
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('n', '<leader>l', '<cmd>lua NumberToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
+vim.keymap.set('n', '<leader>p', function()
+  vim.fn.setreg('+', vim.fn.expand '%:p:.')
+end, { desc = "Copy current buffer's [p]ath" })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
