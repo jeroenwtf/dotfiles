@@ -4,6 +4,7 @@ set -g -x fish_greeting '' # Removes fish greeting
 set XDG_CONFIG_HOME ~/.config
 set NODE_OPTIONS "--max-old-space-size=4096" # node memory
 set PGUSER "postgres"
+set EDITOR "nvim"
 
 # PATH
 set PATH ~/.npm-global/bin $PATH

@@ -28,21 +28,29 @@ yay -S --needed - < aur.pkgs
 
 ## Some leftovers
 
-Install `node` and `npm`
+Make `fish` your default shell.
+
+```
+chsh -s /usr/bin/fish
+```
+
+Install `fisher` plugins.
+
+```
+fisher update
+```
+
+Install `node` and `npm`.
 
 ```
 mise use -g node
 ```
 
-Install `git-recent`
+Install node packages.
 
 ```
 npm install --global git-recent
-```
 
-Install node packages
-
-```
 # Language servers
 npm install -g yaml-language-server
 npm install -g @microsoft/compose-language-service
