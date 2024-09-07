@@ -2,7 +2,7 @@ This is my .dotfiles repo. Still WIP but adding stuff from time to time.
 
 # Things to do
 
-## Create symlinks
+Create symlinks for the configs.
 
 ```
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
@@ -19,7 +19,7 @@ Create a `.gitconfig.local` file with the user name and email like the following
   email = hola@jeroen.wtf
 ```
 
-## Install all the packages
+Install all the packages from `pacman`, `aur` and `snap`.
 
 ```
 sudo pacman -S --needed - < pacman.pkgs
@@ -45,17 +45,17 @@ Make `fish` your default shell.
 chsh -s /usr/bin/fish
 ```
 
+Install `fisher` and its plugins.
+
+```
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+```
+
 Enable services.
 
 ```
 sudo systemctl enable --now postgresql.service
 sudo systemctl enable --now redis.service
-```
-
-Install `fisher` plugins.
-
-```
-fisher update
 ```
 
 Some extra stuff.
