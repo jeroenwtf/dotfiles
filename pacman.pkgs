@@ -8,8 +8,12 @@ fisher
 kitty
 lazygit
 less
+libvips
 neovim
 obsidian
+openslide
+postgresql
+redis
 ripgrep
 spotify-launcher
 starship
@@ -17,3 +21,4 @@ thefuck
 ttf-hack
 ttf-joypixels
 xclip
+yarn

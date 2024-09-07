@@ -34,6 +34,13 @@ Make `fish` your default shell.
 chsh -s /usr/bin/fish
 ```
 
+Enable services.
+
+```
+sudo systemctl enable --now postgresql.service
+sudo systemctl enable --now redis.service
+```
+
 Install `fisher` plugins.
 
 ```
