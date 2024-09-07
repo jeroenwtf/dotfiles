@@ -39,26 +39,23 @@ And then...
 npm install --global - < npm.pkgs
 ```
 
-
-## Some leftovers
-
-Install `git-recent`
+Make `fish` your default shell.
 
 ```
-npm install --global git-recent
+chsh -s /usr/bin/fish
 ```
 
-Install node packages
+Enable services.
 
 ```
-# Language servers
-npm install -g yaml-language-server
-npm install -g @microsoft/compose-language-service
-npm install -g @astrojs/language-server
-- ts/js?
+sudo systemctl enable --now postgresql.service
+sudo systemctl enable --now redis.service
+```
 
-# Other daemons
-npm install -g @fsouza/prettierd
+Install `fisher` plugins.
+
+```
+fisher update
 ```
 
 Some extra stuff.
