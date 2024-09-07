@@ -61,6 +61,7 @@ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fi
 Enable services.
 
 ```
+sudo systemctl enable --now docker.service
 sudo systemctl enable --now postgresql.service
 sudo systemctl enable --now redis.service
 ```
