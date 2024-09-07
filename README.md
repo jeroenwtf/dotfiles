@@ -27,16 +27,18 @@ yay -S --needed - < aur.pkgs
 sudo snap install - < snap.pkgs
 ```
 
-Install `node` and `npm` before continuing.
+Install `node`, `npm` and `gnome-extensions-cli` before continuing.
 
 ```
 mise use -g node
+pipx install gnome-extensions-cli --system-site-packages
 ```
 
 And then...
 
 ```
 npm install --global - < npm.pkgs
+gext install - < gnome.pkgs
 ```
 
 Make `fish` your default shell.

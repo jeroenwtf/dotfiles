@@ -10,6 +10,7 @@ set EDITOR "nvim"
 set PATH ~/.npm-global/bin $PATH
 set PATH ~/.npm/bin $PATH
 set PATH ~/.cargo/bin $PATH
+set PATH ~/.local/bin $PATH
 
 # Sources
 mise activate fish | source
