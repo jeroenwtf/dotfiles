@@ -24,7 +24,12 @@ Install all the packages from `pacman`, `aur` and `snap`.
 ```
 sudo pacman -S --needed - < pacman.pkgs
 yay -S --needed - < aur.pkgs
-sudo snap install - < snap.pkgs
+
+sudo systemctl enable --now snapd.socket
+sudo systemctl enable --now snapd.apparmor.service
+# Now reboot...
+xargs -a snap.pkgs sudo snap install
+sudo snap set core experimental.refresh-app-awareness=true
 ```
 
 Install `node`, `npm` and `gnome-extensions-cli` before continuing.
@@ -37,8 +42,8 @@ pipx install gnome-extensions-cli --system-site-packages
 And then...
 
 ```
-npm install --global - < npm.pkgs
-gext install - < gnome.pkgs
+xargs -a npm.pkgs npm install -g
+xargs -a gnome.pkgs gext install
 ```
 
 Make `fish` your default shell.
@@ -58,10 +63,4 @@ Enable services.
 ```
 sudo systemctl enable --now postgresql.service
 sudo systemctl enable --now redis.service
-```
-
-Some extra stuff.
-
-```
-sudo snap set core experimental.refresh-app-awareness=true
 ```
