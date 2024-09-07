@@ -1,0 +1,5 @@
+@astrojs/language-server
+@fsouza/prettierd
+@microsoft/compose-language-service
+git-recent
+yaml-language-server

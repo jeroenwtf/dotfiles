@@ -22,17 +22,25 @@ Create a `.gitconfig.local` file with the user name and email like the following
 ## Install all the packages
 
 ```
-pacman -S --needed - < pacman.pkgs
+sudo pacman -S --needed - < pacman.pkgs
 yay -S --needed - < aur.pkgs
+sudo snap install - < snap.pkgs
 ```
 
-## Some leftovers
-
-Install `node` and `npm`
+Install `node` and `npm` before continuing.
 
 ```
 mise use -g node
 ```
+
+And then...
+
+```
+npm install --global - < npm.pkgs
+```
+
+
+## Some leftovers
 
 Install `git-recent`
 
@@ -51,4 +59,10 @@ npm install -g @astrojs/language-server
 
 # Other daemons
 npm install -g @fsouza/prettierd
+```
+
+Some extra stuff.
+
+```
+sudo snap set core experimental.refresh-app-awareness=true
 ```
