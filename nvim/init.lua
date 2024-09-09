@@ -137,6 +137,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'petertriho/nvim-scrollbar',
 
   { 'numToStr/Comment.nvim', opts = {
     toggler = {
@@ -447,7 +448,7 @@ require('lazy').setup({
         standardrb = {},
         stimulus_ls = {},
         tailwindcss = {},
-        tsserver = {},
+        ts_ls = {},
         cssls = {},
         yamlls = {},
         eslint = {},
@@ -674,8 +675,27 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'ruby', 'javascript', 'typescript', 'yaml', 'astro' },
-      -- Autoinstall languages that are not installed
+      ensure_installed = {
+        'astro',
+        'bash',
+        'c',
+        'diff',
+        'fish',
+        'git_config',
+        'gitcommit',
+        'html',
+        'javascript',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'ruby',
+        'typescript',
+        'vim',
+        'vimdoc',
+        'yaml',
+      },
       auto_install = true,
       highlight = {
         enable = true,
