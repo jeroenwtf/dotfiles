@@ -65,3 +65,9 @@ sudo systemctl enable --now docker.service
 sudo systemctl enable --now postgresql.service
 sudo systemctl enable --now redis.service
 ```
+
+Cast the screenshots into the fire.
+
+```
+ln -s /dev/null ~/Pictures/Screenshots
+```
