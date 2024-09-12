@@ -19,6 +19,7 @@ postgresql
 python-pipx
 redis
 ripgrep
+ruby
 spotify-launcher
 starship
 thefuck

@@ -139,16 +139,19 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'petertriho/nvim-scrollbar',
 
-  { 'numToStr/Comment.nvim', opts = {
-    toggler = {
-      line = '<C-/>',
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      toggler = {
+        line = '<C-/>',
+      },
+      opleader = {
+        block = '<C-/>',
+      },
     },
-    opleader = {
-      block = '<C-/>',
-    },
-  } },
+  },
 
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
+  {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
@@ -283,8 +286,6 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
@@ -448,10 +449,11 @@ require('lazy').setup({
         standardrb = {},
         stimulus_ls = {},
         tailwindcss = {},
-        ts_ls = {},
         cssls = {},
         yamlls = {},
         eslint = {},
+        -- ts_ls = {},
+        vtsls = {},
         docker_compose_language_service = {},
         astro = {},
         lua_ls = {

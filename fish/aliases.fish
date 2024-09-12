@@ -11,5 +11,5 @@ alias ls='eza --classify=auto --color --group-directories-first --sort=extension
 alias la='eza --classify=auto --color --group-directories-first --sort=extension -a -l --octal-permissions --no-permissions'
 
 # lazygit and lazydocker
-alias lzg="lazygit"
+alias lg="lazygit"
 alias lzd="lazydocker"
