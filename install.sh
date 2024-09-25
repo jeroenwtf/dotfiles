@@ -200,19 +200,19 @@ echo ""
 echo -e "${GREY}Cloning the dotfiles repo...${NC}"
 
 # Check if the dotfiles folder exists already
-if [ -d ~/.dotfiles_test ]; then
+if [ -d ~/.dotfiles ]; then
   echo -e "${RED}The ~/.dotfiles folder already exists. Exiting.${NC}"
   exit 1
 fi
 
 tput civis  # Hide the cursor
-git clone -q https://github.com/"$github_username"/dotfiles ~/.dotfiles_test > /dev/null 2>&1 &
+git clone -q https://github.com/"$github_username"/dotfiles ~/.dotfiles > /dev/null 2>&1 &
 pid=$!
 spinner "$pid" "that"
 tput cnorm  # Show the cursor again
 
 # Ensure the repository was cloned successfully
-if [ ! -d ~/.dotfiles_test ]; then
+if [ ! -d ~/.dotfiles ]; then
   echo -e "${RED}Dotfiles repo cloning failed. Exiting.${NC}"
   exit 1
 else
