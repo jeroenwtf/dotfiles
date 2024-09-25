@@ -6,5 +6,5 @@ mise
 nordvpn-bin
 slack-desktop
 snapd
-ttf-ms-win11-auto
+#ttf-ms-win10-auto
 webapp-manager
