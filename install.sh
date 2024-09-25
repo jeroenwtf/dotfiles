@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 if sudo -v; then
   # Keep sudo session alive in the background while the script runs
