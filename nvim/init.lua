@@ -298,7 +298,20 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            find_command = {
+              'rg',
+              '--no-ignore',
+              '--hidden',
+              '--files',
+              '-g',
+              '!**/node_modules/*',
+              '-g',
+              '!**/.git/*',
+            },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
