@@ -9,6 +9,7 @@ ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/kitty ~/.config/kitty
 ln -s ~/.dotfiles/fish ~/.config/fish
 ln -s ~/.dotfiles/nvim ~/.config/nvim
+ln -s ~/.dotfiles/mise ~/.config/mise
 ```
 
 Create a `.gitconfig.local` file with the user name and email like the following:
