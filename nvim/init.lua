@@ -79,6 +79,9 @@ vim.keymap.set('n', '<leader>p', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })
 
+-- neo-tree
+vim.keymap.set('n', '<C-s>', '<cmd>Neotree document_symbols reveal right<CR>', { desc = 'Toggle document [s]ymbols sidebar' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -186,6 +189,11 @@ require('lazy').setup({
             enabled = true,
           },
         },
+        sources = {
+          'filesystem',
+          'document_symbols',
+          'git_status',
+        },
       }
     end,
   },
@@ -195,6 +203,12 @@ require('lazy').setup({
     config = function()
       require('nvim-ts-autotag').setup()
     end,
+  },
+
+  {
+    'olimorris/persisted.nvim',
+    lazy = false, -- make sure the plugin is always loaded at startup
+    config = true,
   },
 
   {
@@ -322,6 +336,7 @@ require('lazy').setup({
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'persisted')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -469,6 +484,7 @@ require('lazy').setup({
         vtsls = {},
         docker_compose_language_service = {},
         astro = {},
+        -- ruby_lsp = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -490,6 +506,7 @@ require('lazy').setup({
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        -- 'rubocop',
         'stylua', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -513,6 +530,18 @@ require('lazy').setup({
               end,
             }
           end,
+
+          --[[
+          ['ruby_lsp'] = function()
+            require('lspconfig').ruby_lsp.setup {
+              init_options = {
+                formatter = 'standard',
+                linters = { 'standard' },
+              },
+              capabilities = capabilities,
+            }
+          end,
+          ]]
         },
       }
     end,
@@ -527,6 +556,7 @@ require('lazy').setup({
         local disable_filetypes = { c = true, cpp = true }
         return {
           timeout_ms = 500,
+          -- timeout_ms = 1500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
@@ -534,6 +564,7 @@ require('lazy').setup({
         css = { 'prettierd' },
         javascript = { 'prettierd' },
         lua = { 'stylua' },
+        -- ruby = { 'standardrb' },
       },
     },
   },
