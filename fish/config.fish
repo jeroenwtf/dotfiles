@@ -1,4 +1,8 @@
-source $HOME/.dotfiles/fish/aliases.fish
+source ~/.dotfiles/fish/aliases.fish
+
+if test -f ~/.dotfiles/fish/secrets.fish
+  source ~/.dotfiles/fish/secrets.fish
+end
 
 set -g -x fish_greeting '' # Removes fish greeting
 set XDG_CONFIG_HOME ~/.config

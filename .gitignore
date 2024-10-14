@@ -5,3 +5,4 @@ fish/*
 !fish/config.fish
 !fish/fish_plugins
 !fish/aliases.fish
+!fish/secrets.fish.age

@@ -8,6 +8,15 @@ function NumberToggle()
   end
 end
 
+-- Toggle conceal level for markdown AI stuff
+function ConcealToggle()
+  if vim.wo.conceallevel == 0 then
+    vim.wo.conceallevel = 2
+  else
+    vim.wo.conceallevel = 0
+  end
+end
+
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',

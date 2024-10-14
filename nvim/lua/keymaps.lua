@@ -4,7 +4,8 @@ vim.keymap.set('n', '<leader>w', '<cmd>lua MiniBufremove.delete()<CR>', { desc =
 vim.keymap.set('n', '<leader>s', '<cmd>w<CR><esc>', { desc = '[S]ave file' })
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
-vim.keymap.set('n', '<leader>l', '<cmd>lua NumberToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
+vim.keymap.set('n', '<leader>tl', '<cmd>lua NumberToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
+vim.keymap.set('n', '<leader>tc', '<cmd>lua ConcealToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle [c]onceallevel' })
 vim.keymap.set('n', '<leader>p', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })
@@ -32,3 +33,40 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Disable Page Up and Page Down in insert mode - THIS IS GLORY
+vim.keymap.set('i', '<PageUp>', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('i', '<PageDown>', '<nop>', { noremap = true, silent = true })
+
+-- GP AI stuff
+local function keymapOptions(desc)
+  return {
+    noremap = true,
+    silent = true,
+    nowait = true,
+    desc = 'AI: ' .. desc,
+  }
+end
+
+-- Chat commands
+vim.keymap.set('n', '<leader>a<CR>', '<cmd>GpChatRespond<cr>', keymapOptions 'Respond')
+vim.keymap.set('n', '<leader>ac', '<cmd>GpChatNew<cr>', keymapOptions 'New [C]hat')
+vim.keymap.set('n', '<leader>at', '<cmd>GpChatToggle<cr>', keymapOptions '[T]oggle Chat')
+vim.keymap.set('n', '<leader>af', '<cmd>GpChatFinder<cr>', keymapOptions 'Chat [F]inder')
+vim.keymap.set('n', '<leader>ad', '<cmd>GpChatDelete<cr>', keymapOptions '[D]elete Chat')
+
+vim.keymap.set('v', '<leader>ac', ":<C-u>'<,'>GpChatNew<cr>", keymapOptions 'Visual [C]hat New')
+vim.keymap.set('v', '<leader>at', ":<C-u>'<,'>GpChatToggle<cr>", keymapOptions 'Visual [T]oggle Chat')
+
+-- Prompt commands
+vim.keymap.set('v', '<leader>ar', ":<C-u>'<,'>GpRewrite<cr>", keymapOptions 'Visual [R]ewrite')
+vim.keymap.set('v', '<leader>aa', ":<C-u>'<,'>GpAppend<cr>", keymapOptions 'Visual Append ([a]fter)')
+vim.keymap.set('v', '<leader>ab', ":<C-u>'<,'>GpPrepend<cr>", keymapOptions 'Visual Prepend ([b]efore)')
+
+-- Hooks
+vim.keymap.set('v', '<leader>ai', ":<C-u>'<,'>GpImplement<cr>", keymapOptions '[I]mplement selection')
+vim.keymap.set('v', '<leader>ae', ":<C-u>'<,'>GpExplain<cr>", keymapOptions '[E]xplain selection')
+vim.keymap.set('v', '<leader>av', ":<C-u>'<,'>GpCodeReview<cr>", keymapOptions 'Code Re[v]iew selection')
+
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>aq', '<cmd>GpStop<cr>', keymapOptions 'Stop')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>an', '<cmd>GpNextAgent<cr>', keymapOptions '[N]ext Agent')

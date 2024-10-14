@@ -14,6 +14,7 @@ require('lazy').setup({
   require 'plugins.conform',
   require 'plugins.git-conflict',
   require 'plugins.gitsigns',
+  require 'plugins.gp',
   require 'plugins.lazygit',
   require 'plugins.mini',
   require 'plugins.neo-tree',
