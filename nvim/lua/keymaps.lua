@@ -9,6 +9,7 @@ vim.keymap.set('n', '<leader>tc', '<cmd>lua ConcealToggle()<CR>', { noremap = tr
 vim.keymap.set('n', '<leader>p', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })
+vim.keymap.set('x', 'p', '"_dP') -- Don't yank the selection when using `p` in visual mode
 
 -- neo-tree
 vim.keymap.set('n', '<C-s>', '<cmd>Neotree document_symbols reveal right<CR>', { desc = 'Toggle document [s]ymbols sidebar' })
