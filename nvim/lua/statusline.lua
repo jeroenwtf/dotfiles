@@ -213,7 +213,8 @@ vim.api.nvim_exec(
   [[
   augroup Statusline
   au!
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
+  au WinEnter,BufEnter * if &filetype != 'neo-tree' | setlocal statusline=%!v:lua.Statusline.active()
+  au WinEnter,BufEnter * if &filetype == 'neo-tree' | setlocal statusline=%!v:lua.Statusline.inactive()
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
   augroup END
 ]],
