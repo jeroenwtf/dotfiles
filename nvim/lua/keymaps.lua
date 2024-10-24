@@ -10,6 +10,7 @@ vim.keymap.set('n', '<leader>p', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })
 vim.keymap.set('x', 'p', '"_dP') -- Don't yank the selection when using `p` in visual mode
+vim.keymap.set('n', '<leader>tg', '<cmd>Gitsigns toggle_current_line_blame<CR>', { noremap = true, silent = true, desc = 'Toggle [g]it blame' })
 
 -- neo-tree
 vim.keymap.set('n', '<C-s>', '<cmd>Neotree document_symbols reveal right<CR>', { desc = 'Toggle document [s]ymbols sidebar' })
