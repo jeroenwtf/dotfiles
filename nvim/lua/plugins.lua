@@ -16,6 +16,7 @@ require('lazy').setup({
   require 'plugins.gitsigns',
   require 'plugins.gp',
   require 'plugins.lazygit',
+  require 'plugins.menu',
   require 'plugins.mini',
   require 'plugins.neo-tree',
   require 'plugins.nvim-cmp',
