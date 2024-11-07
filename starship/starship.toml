@@ -1,0 +1,8 @@
+[package]
+format = 'package[:$version](dimmed) — '
+
+[nodejs]
+format = 'node[:$version](dimmed) '
+
+[ruby]
+format = 'ruby[:$version](dimmed) '

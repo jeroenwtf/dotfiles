@@ -10,6 +10,7 @@ ln -s ~/.dotfiles/kitty ~/.config/kitty
 ln -s ~/.dotfiles/fish ~/.config/fish
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s ~/.dotfiles/mise ~/.config/mise
+ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
 ```
 
 Create a `.gitconfig.local` file with the user name and email like the following:
