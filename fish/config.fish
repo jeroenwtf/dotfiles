@@ -16,7 +16,7 @@ fish_add_path ~/.npm-global/bin
 fish_add_path ~/.npm/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
-fish_add_path ~/.local/share/mise/shims
+# fish_add_path ~/.local/share/mise/shims
 
 # Sources
 mise activate fish | source

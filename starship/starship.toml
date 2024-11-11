@@ -1,8 +1,11 @@
 [package]
-format = 'package[:$version](dimmed) — '
+format = 'package[@$version](dimmed) — '
+version_format = '${raw}'
 
 [nodejs]
-format = 'node[:$version](dimmed) '
+format = 'node[@$version](dimmed) '
+version_format = '${raw}'
 
 [ruby]
-format = 'ruby[:$version](dimmed) '
+format = 'ruby[@$version](dimmed) '
+version_format = '${raw}'
