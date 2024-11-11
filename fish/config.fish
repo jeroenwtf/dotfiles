@@ -6,15 +6,17 @@ end
 
 set -g -x fish_greeting '' # Removes fish greeting
 set XDG_CONFIG_HOME ~/.config
+set XDG_CURRENT_DESKTOP GNOME
 set NODE_OPTIONS "--max-old-space-size=4096" # node memory
 set PGUSER "postgres"
 set EDITOR "nvim"
 
 # PATH
-set PATH ~/.npm-global/bin $PATH
-set PATH ~/.npm/bin $PATH
-set PATH ~/.cargo/bin $PATH
-set PATH ~/.local/bin $PATH
+fish_add_path ~/.npm-global/bin
+fish_add_path ~/.npm/bin
+fish_add_path ~/.cargo/bin
+fish_add_path ~/.local/bin
+# fish_add_path ~/.local/share/mise/shims
 
 # Sources
 mise activate fish | source
