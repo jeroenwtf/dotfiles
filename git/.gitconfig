@@ -2,7 +2,7 @@
   path = ~/.gitconfig.local
 
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore.global
   attributesfile = ~/.gitattributes
   autocrlf = false
   safecrlf = false

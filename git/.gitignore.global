@@ -1,0 +1,26 @@
+*~
+node_modules
+.open-files
+
+# git credential file
+.gitconfig.local
+
+# Compiled Python files
+*.pyc
+
+# Debug logs (npm, yarn)
+*.log
+
+# Editor artifacts
+.*.sw[a-z]
+*~
+.#*
+.vscode
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*

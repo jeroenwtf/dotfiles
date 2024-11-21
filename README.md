@@ -6,6 +6,7 @@ Create symlinks for the configs.
 
 ```
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/git/.gitignore.global ~/.gitignore.global
 ln -s ~/.dotfiles/kitty ~/.config/kitty
 ln -s ~/.dotfiles/fish ~/.config/fish
 ln -s ~/.dotfiles/nvim ~/.config/nvim
