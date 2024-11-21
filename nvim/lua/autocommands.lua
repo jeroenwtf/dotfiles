@@ -50,11 +50,15 @@ end
 -- Create the :OpenFilesInit command
 vim.api.nvim_create_user_command('OpenFilesInit', init_open_files, {})
 
-local function write_open_files()
+local function write_open_files(silent)
   local root = vim.fn.getcwd()
   local open_files_path = root .. '/.open-files'
 
   if vim.fn.filereadable(open_files_path) ~= 1 then
+    if silent == true then
+      return
+    end
+
     local create_file = vim.fn.input('.open-files file not found in ' .. root .. '. Create it? (y/n): ')
     vim.api.nvim_command 'redraw'
 
@@ -93,16 +97,21 @@ local function write_open_files()
 end
 
 vim.api.nvim_create_user_command('OpenFilesWrite', write_open_files, {})
+vim.api.nvim_create_user_command('OpenFilesUpdate', function()
+  write_open_files(true)
+end, {})
 
-vim.api.nvim_create_autocmd('VimLeave', {
-  callback = write_open_files,
-})
-
-local function read_open_files()
+local function read_open_files(silent)
   local root = vim.fn.getcwd()
   local open_files_path = root .. '/.open-files'
 
-  if vim.fn.filereadable(open_files_path) == 1 then
+  if vim.fn.filereadable(open_files_path) ~= 1 then
+    if silent == true then
+      return
+    end
+
+    vim.notify('.open-files file not found in ' .. root, vim.log.levels.WARN)
+  else
     local files = vim.fn.readfile(open_files_path)
 
     if #files > 0 then
@@ -112,8 +121,6 @@ local function read_open_files()
     else
       vim.notify('.open-files file is empty', vim.log.levels.WARN)
     end
-  else
-    vim.notify('.open-files file not found in ' .. root, vim.log.levels.WARN)
   end
 end
 
@@ -146,5 +153,34 @@ end
 
 vim.api.nvim_create_user_command('OpenFilesDelete', check_and_delete_open_files, {})
 
--- Every time we open a file, update
--- Every time we close a buffer, update
+-- Automatic stuff
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.defer_fn(function()
+      read_open_files(true)
+    end, 0)
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufAdd', {
+  callback = function()
+    local file = vim.fn.expand '<afile>'
+
+    if vim.fn.filereadable(file) == 1 then
+      write_open_files(true)
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufDelete' }, {
+  callback = function()
+    local file = vim.fn.expand '%:p'
+
+    if vim.fn.filereadable(file) == 1 then
+      vim.defer_fn(function()
+        write_open_files(true)
+      end, 10) -- Delay by 10ms to ensure buffer removal
+    end
+  end,
+})
