@@ -127,11 +127,6 @@ end
 -- Create the :OpenFilesRead command
 vim.api.nvim_create_user_command('OpenFilesRead', read_open_files, {})
 
---[[ vim.api.nvim_create_autocmd('User', {
-  pattern = 'LazyDone', -- Change this if you're using a different event
-  callback = read_open_files,
-}) ]]
-
 local function check_and_delete_open_files()
   local cwd = vim.fn.getcwd()
   local open_files_path = cwd .. '/.open-files'
@@ -152,8 +147,6 @@ local function check_and_delete_open_files()
 end
 
 vim.api.nvim_create_user_command('OpenFilesDelete', check_and_delete_open_files, {})
-
--- Automatic stuff
 
 vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
