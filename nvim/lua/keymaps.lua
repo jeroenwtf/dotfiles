@@ -10,6 +10,7 @@ vim.keymap.set('n', '<leader>p', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })
 vim.keymap.set('x', 'p', '"_dP') -- Don't yank the selection when using `p` in visual mode
+vim.keymap.set('n', '<leader>f', '<cmd>source %<CR>', { desc = 'Source [f]ile' })
 vim.keymap.set('n', '<leader>tg', '<cmd>Gitsigns toggle_current_line_blame<CR>', { noremap = true, silent = true, desc = 'Toggle [g]it blame' })
 
 -- menu
@@ -44,6 +45,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Disable Page Up and Page Down in insert mode - THIS IS GLORY
 vim.keymap.set('i', '<PageUp>', '<nop>', { noremap = true, silent = true })
 vim.keymap.set('i', '<PageDown>', '<nop>', { noremap = true, silent = true })
+
+-- .open-files stuff
+vim.keymap.set('n', '<leader>or', '<cmd>OpenFilesRead<CR>', { desc = 'Open stored files' })
+vim.keymap.set('n', '<leader>ow', '<cmd>OpenFilesWrite<CR>', { desc = 'Save buffers to list' })
+vim.keymap.set('n', '<leader>oi', '<cmd>OpenFilesInit<CR>', { desc = '[I]nit .open-files' })
+vim.keymap.set('n', '<leader>od', '<cmd>OpenFilesDelete<CR>', { desc = '[D]elete' })
 
 -- GP AI stuff
 local function keymapOptions(desc)
