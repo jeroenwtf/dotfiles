@@ -1,4 +1,4 @@
 [tools]
 usage = "latest"
-node = "latest"
+node = "22.11"
 ruby = "latest"

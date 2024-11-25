@@ -6,20 +6,28 @@ vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('n', '<leader>tl', '<cmd>lua NumberToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
 vim.keymap.set('n', '<leader>tc', '<cmd>lua ConcealToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle [c]onceallevel' })
-vim.keymap.set('n', '<leader>p', function()
+vim.keymap.set('n', '<leader>fp', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })
 vim.keymap.set('x', 'p', '"_dP') -- Don't yank the selection when using `p` in visual mode
-vim.keymap.set('n', '<leader>f', function()
-  vim.cmd 'source %'
-  vim.notify(string.format('Current buffer sourced: %s', vim.fn.expand '%:p:~:.'), vim.log.levels.INFO)
-end, { desc = 'Source [f]ile' })
+vim.keymap.set('n', '<leader>fs', function()
+  local current_file = vim.fn.expand '%:p'
+  if vim.fn.fnamemodify(current_file, ':e') == 'lua' then
+    vim.cmd('luafile ' .. current_file)
+    vim.notify(string.format('Current Lua file sourced: %s', vim.fn.fnamemodify(current_file, ':~:.')), vim.log.levels.INFO)
+  elseif vim.fn.fnamemodify(current_file, ':e') == 'vim' then
+    vim.cmd('source ' .. current_file)
+    vim.notify(string.format('Current Vim script sourced: %s', vim.fn.fnamemodify(current_file, ':~:.')), vim.log.levels.INFO)
+  else
+    vim.notify('Current file is not a Lua or Vim script. Cannot source.', vim.log.levels.WARN)
+  end
+end, { desc = 'Source [f]ile if Lua or Vim script' })
 vim.keymap.set('n', '<leader>tg', '<cmd>Gitsigns toggle_current_line_blame<CR>', { noremap = true, silent = true, desc = 'Toggle [g]it blame' })
 
 -- menu
 vim.keymap.set('n', '<leader><leader>', function()
   require('menu').open 'default'
-end, {})
+end, { desc = 'Open floating menu' })
 
 -- neo-tree
 vim.keymap.set('n', '<C-s>', '<cmd>Neotree document_symbols reveal right<CR>', { desc = 'Toggle document [s]ymbols sidebar' })

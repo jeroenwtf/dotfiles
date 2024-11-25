@@ -26,154 +26,176 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Define the function to initialize the .open-files file
-local function init_open_files()
-  local cwd = vim.fn.getcwd() -- Get the current working directory
-  local filepath = cwd .. '/.open-files' -- Path to .open-files
+-- Caveman's stuff
 
-  -- Check if the .open-files file already exists
-  if vim.fn.filereadable(filepath) == 1 then
-    print 'Error: .open-files already exists in this cwd.'
+local M = {}
+
+local function get_open_files_path()
+  return vim.fn.getcwd() .. '/.open-files'
+end
+
+local function file_exists(path)
+  return vim.fn.filereadable(path) == 1
+end
+
+local function create_file(path)
+  local file = io.open(path, 'w')
+  if file then
+    file:close()
+    return true
+  end
+  return false
+end
+
+function M.init_open_files()
+  local filepath = get_open_files_path()
+
+  if file_exists(filepath) then
+    vim.notify('Error: .open-files already exists in this directory.', vim.log.levels.ERROR)
     return
   end
 
-  -- Create the empty .open-files file
-  local file = io.open(filepath, 'w')
-  if file then
-    file:close() -- Close the file after creating it
-    print('.open-files initialized in ' .. cwd)
+  if create_file(filepath) then
+    vim.notify('.open-files initialized in ' .. vim.fn.getcwd(), vim.log.levels.INFO)
   else
-    print('Error: Could not create .open-files in ' .. cwd)
+    vim.notify('Error: Could not create .open-files in ' .. vim.fn.getcwd(), vim.log.levels.ERROR)
   end
 end
 
--- Create the :OpenFilesInit command
-vim.api.nvim_create_user_command('OpenFilesInit', init_open_files, {})
+local function get_open_buffers()
+  local open_files = {}
 
-local function write_open_files(silent)
-  local root = vim.fn.getcwd()
-  local open_files_path = root .. '/.open-files'
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_option(buf, 'buflisted') then
+      local file_path = vim.api.nvim_buf_get_name(buf)
 
-  if vim.fn.filereadable(open_files_path) ~= 1 then
-    if silent == true then
+      if file_path ~= '' then
+        table.insert(open_files, vim.fn.fnamemodify(file_path, ':.'))
+      end
+    end
+  end
+
+  return open_files
+end
+
+function M.write_open_files(silent)
+  local open_files_path = get_open_files_path()
+
+  if not file_exists(open_files_path) then
+    if silent then
       return
     end
 
-    local create_file = vim.fn.input('.open-files file not found in ' .. root .. '. Create it? (y/n): ')
-    vim.api.nvim_command 'redraw'
-
-    if create_file:lower() == 'y' then
-      local file, err = io.open(open_files_path, 'w')
-
-      if file then
-        file:close()
-        vim.notify('.open-files created successfully in ' .. root, vim.log.levels.INFO)
-      else
-        vim.notify('Failed to create .open-files: ' .. (err or 'Unknown error'), vim.log.levels.ERROR)
-        return
-      end
-    else
+    if vim.fn.input('.open-files not found. Create it? (y/n): '):lower() ~= 'y' then
+      vim.api.nvim_command 'redraw'
       vim.notify('.open-files creation cancelled', vim.log.levels.INFO)
       return
     end
-  end
 
-  local buffers = vim.api.nvim_list_bufs()
-  local open_files = {}
+    vim.api.nvim_command 'redraw'
 
-  for _, buf in ipairs(buffers) do
-    if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_option(buf, 'buflisted') then
-      local file_path = vim.api.nvim_buf_get_name(buf)
-      if file_path ~= '' then
-        local relative_path = vim.fn.fnamemodify(file_path, ':.')
-        table.insert(open_files, relative_path)
-      end
+    if not create_file(open_files_path) then
+      vim.notify('Failed to create .open-files', vim.log.levels.ERROR)
+      return
     end
+
+    vim.notify('.open-files created successfully', vim.log.levels.INFO)
   end
+
+  local open_files = get_open_buffers()
 
   if #open_files > 0 then
     vim.fn.writefile(open_files, open_files_path)
   end
 end
 
-vim.api.nvim_create_user_command('OpenFilesWrite', write_open_files, {})
-vim.api.nvim_create_user_command('OpenFilesUpdate', function()
-  write_open_files(true)
+function M.read_open_files(silent)
+  local open_files_path = get_open_files_path()
+
+  if not file_exists(open_files_path) then
+    if not silent then
+      vim.notify('.open-files not found in ' .. vim.fn.getcwd(), vim.log.levels.WARN)
+    end
+    return
+  end
+
+  local files = vim.fn.readfile(open_files_path)
+
+  if #files > 0 then
+    for _, file in ipairs(files) do
+      vim.cmd('edit ' .. vim.fn.fnameescape(file))
+    end
+  else
+    if not silent then
+      vim.notify('.open-files is empty', vim.log.levels.WARN)
+    end
+  end
+end
+
+function M.delete_open_files()
+  local open_files_path = get_open_files_path()
+
+  if file_exists(open_files_path) then
+    if vim.fn.input('Delete .open-files? (y/n): '):lower() == 'y' then
+      vim.api.nvim_command 'redraw'
+      os.remove(open_files_path)
+      vim.notify('.open-files deleted.', vim.log.levels.INFO)
+    else
+      vim.api.nvim_command 'redraw'
+      vim.notify('.open-files not deleted.', vim.log.levels.INFO)
+    end
+  else
+    vim.notify('.open-files does not exist in the current directory.', vim.log.levels.WARN)
+  end
+end
+
+-- Create user commands
+vim.api.nvim_create_user_command('OpenFilesInit', M.init_open_files, {})
+
+vim.api.nvim_create_user_command('OpenFilesWrite', function()
+  M.write_open_files(false)
 end, {})
 
-local function read_open_files(silent)
-  local root = vim.fn.getcwd()
-  local open_files_path = root .. '/.open-files'
+vim.api.nvim_create_user_command('OpenFilesUpdate', function()
+  M.write_open_files(true)
+end, {})
 
-  if vim.fn.filereadable(open_files_path) ~= 1 then
-    if silent == true then
-      return
-    end
+vim.api.nvim_create_user_command('OpenFilesRead', function()
+  M.read_open_files(false)
+end, {})
 
-    vim.notify('.open-files file not found in ' .. root, vim.log.levels.WARN)
-  else
-    local files = vim.fn.readfile(open_files_path)
+vim.api.nvim_create_user_command('OpenFilesDelete', M.delete_open_files, {})
 
-    if #files > 0 then
-      for _, file in ipairs(files) do
-        vim.cmd('edit ' .. vim.fn.fnameescape(file))
-      end
-    else
-      vim.notify('.open-files file is empty', vim.log.levels.WARN)
-    end
-  end
-end
-
--- Create the :OpenFilesRead command
-vim.api.nvim_create_user_command('OpenFilesRead', read_open_files, {})
-
-local function check_and_delete_open_files()
-  local cwd = vim.fn.getcwd()
-  local open_files_path = cwd .. '/.open-files'
-
-  if vim.fn.filereadable(open_files_path) == 1 then
-    local choice = vim.fn.input 'Delete .open-files? (y/n): '
-    vim.api.nvim_command 'redraw'
-
-    if choice:lower() == 'y' then
-      os.remove(open_files_path)
-      print '.open-files deleted.'
-    else
-      print '.open-files not deleted.'
-    end
-  else
-    print '.open-files does not exist in the current directory.'
-  end
-end
-
-vim.api.nvim_create_user_command('OpenFilesDelete', check_and_delete_open_files, {})
+-- Set up autocommands
+local group = vim.api.nvim_create_augroup('OpenFilesAutoCommands', { clear = true })
 
 vim.api.nvim_create_autocmd('VimEnter', {
+  group = group,
   callback = function()
     vim.defer_fn(function()
-      read_open_files(true)
+      M.read_open_files(true)
     end, 0)
   end,
 })
 
 vim.api.nvim_create_autocmd('BufAdd', {
+  group = group,
   callback = function()
-    local file = vim.fn.expand '<afile>'
-
-    if vim.fn.filereadable(file) == 1 then
-      write_open_files(true)
+    if file_exists(vim.fn.expand '<afile>') then
+      M.write_open_files(true)
     end
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufDelete' }, {
+vim.api.nvim_create_autocmd('BufDelete', {
+  group = group,
   callback = function()
-    local file = vim.fn.expand '%:p'
-
-    if vim.fn.filereadable(file) == 1 then
+    if file_exists(vim.fn.expand '%:p') then
       vim.defer_fn(function()
-        write_open_files(true)
-      end, 10) -- Delay by 10ms to ensure buffer removal
+        M.write_open_files(true)
+      end, 10)
     end
   end,
 })
+
+return M
