@@ -19,5 +19,13 @@ return {
     require('mini.bufremove').setup()
     require('mini.move').setup()
     require('mini.tabline').setup()
+
+    require('mini.indentscope').setup {
+      draw = {
+        delay = 0,
+        animation = require('mini.indentscope').gen_animation.none(),
+      },
+      symbol = '▎',
+    }
   end,
 }
