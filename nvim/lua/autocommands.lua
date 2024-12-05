@@ -169,14 +169,14 @@ vim.api.nvim_create_user_command('OpenFilesDelete', M.delete_open_files, {})
 -- Set up autocommands
 local group = vim.api.nvim_create_augroup('OpenFilesAutoCommands', { clear = true })
 
-vim.api.nvim_create_autocmd('VimEnter', {
+--[[ vim.api.nvim_create_autocmd('VimEnter', {
   group = group,
   callback = function()
     vim.defer_fn(function()
       M.read_open_files(true)
     end, 0)
   end,
-})
+}) ]]
 
 vim.api.nvim_create_autocmd('BufAdd', {
   group = group,

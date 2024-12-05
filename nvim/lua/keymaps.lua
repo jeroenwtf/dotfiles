@@ -22,6 +22,7 @@ vim.keymap.set('n', '<leader>fs', function()
     vim.notify('Current file is not a Lua or Vim script. Cannot source.', vim.log.levels.WARN)
   end
 end, { desc = 'Source [f]ile if Lua or Vim script' })
+vim.keymap.set('n', '<leader>fl', '<cmd>OpenFilesRead<CR>', { noremap = true, desc = '[L]oad .open-files list' })
 vim.keymap.set('n', '<leader>tg', '<cmd>Gitsigns toggle_current_line_blame<CR>', { noremap = true, silent = true, desc = 'Toggle [g]it blame' })
 
 -- menu
