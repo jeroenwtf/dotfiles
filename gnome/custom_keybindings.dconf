@@ -2,3 +2,8 @@
 binding='<Super>space'
 command='rofi -show drun'
 name='Rofi'
+
+[custom1]
+binding='<Super>a'
+command='/home/jeroen/.dotfiles/scripts/rofi_todo.sh'
+name='Add Todoist todo'
