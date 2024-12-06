@@ -13,3 +13,6 @@ alias la='eza --classify=auto --color --group-directories-first --sort=extension
 # lazygit and lazydocker
 alias lg="lazygit"
 alias lzd="lazydocker"
+
+# tod
+alias todo="tod t q -c"

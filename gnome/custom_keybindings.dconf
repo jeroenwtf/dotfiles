@@ -1,0 +1,4 @@
+[custom0]
+binding='<Super>space'
+command='rofi -show drun'
+name='Rofi'
