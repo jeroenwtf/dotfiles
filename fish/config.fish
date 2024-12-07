@@ -10,6 +10,7 @@ set XDG_CURRENT_DESKTOP GNOME
 set NODE_OPTIONS "--max-old-space-size=4096" # node memory
 set PGUSER "postgres"
 set EDITOR "nvim"
+set --export STARSHIP_CONFIG ~/.config/starship/starship.toml
 
 # PATH
 fish_add_path ~/.npm-global/bin

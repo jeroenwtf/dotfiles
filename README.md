@@ -7,11 +7,13 @@ Create symlinks for the configs.
 ```
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/git/.gitignore.global ~/.gitignore.global
-ln -s ~/.dotfiles/kitty ~/.config/kitty
 ln -s ~/.dotfiles/fish ~/.config/fish
-ln -s ~/.dotfiles/nvim ~/.config/nvim
+ln -s ~/.dotfiles/lazygit ~/.config/lazygit
+ln -s ~/.dotfiles/kitty ~/.config/kitty
 ln -s ~/.dotfiles/mise ~/.config/mise
-ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
+ln -s ~/.dotfiles/nvim ~/.config/nvim
+ln -s ~/.dotfiles/rofi ~/.config/rofi
+ln -s ~/.dotfiles/starship/ ~/.config/starship
 ```
 
 Create a `.gitconfig.local` file with the user name and email like the following:

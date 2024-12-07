@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 [package]
 format = 'package[@$version](dimmed) — '
 version_format = '${raw}'
