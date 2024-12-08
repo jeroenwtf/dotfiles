@@ -1,18 +1,21 @@
 setup:
     @just symlink-dotfiles
+
     @just install-pacman-packages
     @just install-aur-packages
+
     @just install-node
     @just install-npm-packages
+
     @just install-gnome-extensions-cli
     @just install-gnome-packages
-    @just setup-fish
-    @just enable-services
 
-setup-fish:
     @just set-default-shell
     @just install-fisher-and-plugins
 
+    @just enable-services
+
+[group('chores')]
 enable-services:
     sudo systemctl enable --now docker.service
     sudo systemctl enable --now postgresql.service
@@ -26,6 +29,7 @@ install-pacman-packages:
 install-aur-packages:
     yay -S --needed - < packages/aur.list
 
+[group('chores')]
 install-gnome-extensions-cli:
     pipx install gnome-extensions-cli --system-site-packages
 
@@ -37,6 +41,7 @@ install-gnome-packages:
         gext install "$extension"
     done < packages/gnome.list
 
+[group('chores')]
 install-node:
     mise use node@lts
     mise install node@lts
@@ -63,6 +68,7 @@ install-fisher-and-plugins:
     end
     fisher update
 
+[group('chores')]
 symlink-dotfiles:
     ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
     ln -s ~/.dotfiles/git/.gitignore.global ~/.gitignore.global
