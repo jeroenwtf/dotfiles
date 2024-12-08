@@ -1,4 +1,4 @@
 [tools]
 usage = "latest"
-node = "latest"
+node = "lts"
 ruby = "latest"

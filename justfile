@@ -4,11 +4,12 @@ setup:
     @just install-pacman-packages
     @just install-aur-packages
 
-    @just install-node
+    @just install-mise-tools
     @just install-npm-packages
+    @just install-gems
 
     @just install-gnome-extensions-cli
-    @just install-gnome-packages
+    @just install-gnome-extensions
 
     @just set-default-shell
     @just install-fisher-and-plugins
@@ -34,7 +35,7 @@ install-gnome-extensions-cli:
     pipx install gnome-extensions-cli --system-site-packages
 
 [group('install packages')]
-install-gnome-packages:
+install-gnome-extensions:
     #!/usr/bin/env bash
     set -euo pipefail
     while IFS= read -r extension; do
@@ -42,9 +43,14 @@ install-gnome-packages:
     done < packages/gnome.list
 
 [group('chores')]
-install-node:
-    mise use node@lts
+install-mise-tools:
+    mise use -g usage
+
+    mise use -g node@lts
     mise install node@lts
+
+    mise use -g ruby@latest
+    mise install ruby
 
 [group('install packages')]
 install-npm-packages:
@@ -55,6 +61,10 @@ install-npm-packages:
             npm install -g "$package"
         fi
     done < packages/npm.list
+
+[group('install packages')]
+install-gems:
+    xargs -a packages/gem.list gem install
 
 [group('fish')]
 set-default-shell:
