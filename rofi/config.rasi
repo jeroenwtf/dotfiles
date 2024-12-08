@@ -1,43 +1,41 @@
-/*
- * ROFI One Dark
- *
- * Based on OneDark.vim (https://github.com/joshdick/onedark.vim)
- *
- * Author: Benjamin Stauss
- * User: me-benni
- * Edit: hatoba29
- *
- */
-
+configuration {
+  dpi: 125;
+}
 
 * {
-  black:      #000000;
-  red:        #eb6e67;
-  green:      #95ee8f;
-  yellow:     #f8c456;
-  blue:       #6eaafb;
-  magenta:    #d886f3;
-  cyan:       #6cdcf7;
-  emphasis:   #50536b;
-  text:       #dfdfdf;
-  text-alt:   #b2b2b2;
-  fg:         #abb2bf;
-  bg:         #282c34;
+  selection: #283457;
+  comment: #565f89;
+  red: #f7768e;
+  orange: #ff9e64;
+  yellow: #e0af68;
+  green: #9ece6a;
+  purple: #9d7cd8;
+  cyan: #7dcfff;
+  pink: #bb9af7;
+  black: #15161e;
+  blue: #7aa2f7;
+  magenta: #bb9af7;
+  fg: #c0caf5;
+  bg: #1a1b26;
+
+  emphasis: @cyan;
+  text: red;
+  text-alt: @comment;
 
   spacing: 0;
   background-color: transparent;
+  font: "JetBrains Mono 16";
 
-  font: "SauceCodePro Nerd Font 14";
   text-color: @text;
 }
 
 window {
   transparency: "screenshot";
-	location: center;
-	background-color: #282c34dd;
-	width: 40%;
+  location: center;
+  background-color: #282c34dd;
+  width: 40%;
   border: 4;
-  border-color: @emphasis;
+  border-color: @cyan;
 }
 
 mainbox {
@@ -46,12 +44,12 @@ mainbox {
 
 inputbar {
   padding: 20px 20px;
-  children: [entry, case-indicator];
-  background-color: @emphasis;
+  children: [prompt,textbox-prompt-colon,entry];
+  background-color: @bg;
 }
 
 prompt {
-  text-color: @blue;
+  text-color: @cyan;
 }
 
 textbox-prompt-colon {
@@ -62,34 +60,64 @@ textbox-prompt-colon {
 
 entry {
   margin: 0px 0px;
+  color: @fg;
 }
 
 listview {
-	padding: 15px 15px;
+  padding: 15px 15px;
   spacing: 5px;
-	fixed-height: false;
-	scrollbar: false;
-	lines: 5;
+  fixed-height: false;
+  scrollbar: false;
+  lines: 7;
 }
 
 element {
-  padding: 8px;
-  text-color: @text-alt;
-  highlight: bold #95ee8f; /* green */
-  border-radius: 3px;
+    padding: 1px ;
+    cursor:  pointer;
+    spacing: 5px ;
+    border:  0;
 }
-
-element selected {
-  background-color: @emphasis;
-  text-color: @text;
+element normal.normal {
+    background-color: red;
+    text-color:       var(normal-foreground);
 }
-
-element urgent, element selected urgent {
-  text-color: @red;
+element normal.urgent {
+    background-color: var(urgent-background);
+    text-color:       var(urgent-foreground);
 }
-
-element active, element selected active {
-  text-color: @purple;
+element normal.active {
+    background-color: var(active-background);
+    text-color:       var(active-foreground);
+}
+element selected.normal {
+    background-color: var(selected-normal-background);
+    text-color:       var(selected-normal-foreground);
+}
+element selected.urgent {
+    background-color: var(selected-urgent-background);
+    text-color:       var(selected-urgent-foreground);
+}
+element selected.active {
+    background-color: var(selected-active-background);
+    text-color:       var(selected-active-foreground);
+}
+element alternate.normal {
+    background-color: var(alternate-normal-background);
+    text-color:       var(alternate-normal-foreground);
+}
+element alternate.urgent {
+    background-color: var(alternate-urgent-background);
+    text-color:       var(alternate-urgent-foreground);
+}
+element alternate.active {
+    background-color: var(alternate-active-background);
+    text-color:       var(alternate-active-foreground);
+}
+element-text {
+    background-color: transparent;
+    cursor:           inherit;
+    highlight:        inherit;
+    text-color:       inherit;
 }
 
 message {
