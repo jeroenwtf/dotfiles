@@ -12,6 +12,7 @@ return {
       'gitcommit',
       'html',
       'javascript',
+      'just',
       'lua',
       'luadoc',
       'markdown',
