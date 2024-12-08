@@ -353,7 +353,6 @@ echo ""
 
 echo -e "${GREY}Installing node, npm and gnome-extensions-cli...${NC}"
 
-mise use -g node > /dev/null 2>&1
 pipx install gnome-extensions-cli --system-site-packages > /dev/null 2>&1
 
 mise use -g node > /dev/null 2>&1
