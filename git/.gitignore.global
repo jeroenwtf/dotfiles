@@ -1,26 +1,28 @@
-*~
 node_modules
 .open-files
 
-# git credential file
+# Local Git configuration
 .gitconfig.local
 
-# Compiled Python files
+# Compiled files
 *.pyc
 
-# Debug logs (npm, yarn)
+# Log files
 *.log
 
-# Editor artifacts
+# Editor and IDE artifacts
 .*.sw[a-z]
 *~
 .#*
 .vscode
 
-# OS files
-Thumbs.db
-Desktop.ini
+# Operating system files
+## macOS
 .DS_Store
 .Spotlight-V100
 .Trashes
 ._*
+
+## Windows
+Thumbs.db
+Desktop.ini
