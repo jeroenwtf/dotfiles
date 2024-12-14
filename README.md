@@ -16,25 +16,11 @@ ln -s ~/.dotfiles/rofi ~/.config/rofi
 ln -s ~/.dotfiles/starship/ ~/.config/starship
 ```
 
-Create a `.gitconfig.local` file with the user name and email like the following:
-
-```
-[user]
-  name = Jeroen van Meerendonk
-  email = hola@jeroen.wtf
-```
-
 Install all the packages from `pacman`, `aur` and `snap`.
 
 ```
 sudo pacman -S --needed - < pacman.pkgs
 yay -S --needed - < aur.pkgs
-
-sudo systemctl enable --now snapd.socket
-sudo systemctl enable --now snapd.apparmor.service
-# Now reboot...
-xargs -a snap.pkgs sudo snap install
-sudo snap set core experimental.refresh-app-awareness=true
 ```
 
 Install `node`, `npm` and `gnome-extensions-cli` before continuing.
