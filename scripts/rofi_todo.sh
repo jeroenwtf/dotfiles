@@ -5,9 +5,9 @@ TODO=$(rofi -dmenu -p "Add todo" -no-match -lines 0 -theme-str 'entry { placehol
 
 if [[ -n $TODO ]]; then
     if tod t q -c "$TODO"; then
-        notify-send -a Todoist "Saved Todo: $TODO"
+        notify-send -a Todoist "Saved TODO: $TODO"
     else
-        notify-send -a Todoist -u critical "Error: Failed to save todo"
+        notify-send -a Todoist -u critical "Error: Failed to save TODO"
     fi
 fi
 
