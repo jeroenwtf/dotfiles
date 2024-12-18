@@ -7,7 +7,7 @@ is_weekday() {
 }
 
 if is_weekday; then
-    kitty &
+    wezterm &
     firefox &
     firefox-developer-edition &
     mattermost-desktop &
