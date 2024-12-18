@@ -103,7 +103,7 @@ local function lsp()
   local closing = ''
 
   if count['errors'] ~= 0 then
-    errors = ' %#StatuslineLspDiagnosticsSignError# ' .. count['errors']
+    errors = ' %#StatuslineLspDiagnosticsSignError#󰅙 ' .. count['errors']
   end
 
   if count['warnings'] ~= 0 then
@@ -111,11 +111,11 @@ local function lsp()
   end
 
   if count['hints'] ~= 0 then
-    hints = ' %#StatuslineLspDiagnosticsSignHint# ' .. count['hints']
+    hints = ' %#StatuslineLspDiagnosticsSignHint#󰌵 ' .. count['hints']
   end
 
   if count['info'] ~= 0 then
-    info = ' %#StatuslineLspDiagnosticsSignInformation# ' .. count['info']
+    info = ' %#StatuslineLspDiagnosticsSignInformation#󰋼 ' .. count['info']
   end
 
   if errors ~= '' or warnings ~= '' or hints ~= '' or info ~= '' then
