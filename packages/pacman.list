@@ -8,7 +8,6 @@ firefox-developer-edition
 fish
 fisher
 just
-kitty
 lazygit
 less
 libvips
@@ -23,7 +22,8 @@ ruby
 spotify-launcher
 starship
 thefuck
-ttf-hack
 ttf-joypixels
+ttf-nerd-fonts-symbols-mono
+wezterm
 xclip
 yarn
