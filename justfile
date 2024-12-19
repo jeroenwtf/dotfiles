@@ -80,13 +80,28 @@ install-fisher-and-plugins:
 
 [group('chores')]
 symlink-dotfiles:
-    ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
-    ln -s ~/.dotfiles/git/.gitignore.global ~/.gitignore.global
-    ln -s ~/.dotfiles/fish ~/.config/fish
-    ln -s ~/.dotfiles/lazygit ~/.config/lazygit
-    ln -s ~/.dotfiles/kitty ~/.config/kitty
-    ln -s ~/.dotfiles/mise ~/.config/mise
-    ln -s ~/.dotfiles/nvim ~/.config/nvim
-    ln -s ~/.dotfiles/rofi ~/.config/rofi
-    ln -s ~/.dotfiles/starship ~/.config/starship
-    ln -s /dev/null ~/Pictures/Screenshots
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    create_symlink() {
+        local source="$1"
+        local target="$2"
+        if [ ! -e "$target" ]; then
+            ln -s "$source" "$target"
+            echo "Created symlink: $target -> $source"
+        else
+            echo "Symlink already exists: $target"
+        fi
+    }
+
+    create_symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
+    create_symlink ~/.dotfiles/git/.gitignore.global ~/.gitignore.global
+    create_symlink ~/.dotfiles/fish ~/.config/fish
+    create_symlink ~/.dotfiles/lazygit ~/.config/lazygit
+    create_symlink ~/.dotfiles/kitty ~/.config/kitty
+    create_symlink ~/.dotfiles/mise ~/.config/mise
+    create_symlink ~/.dotfiles/nvim ~/.config/nvim
+    create_symlink ~/.dotfiles/rofi ~/.config/rofi
+    create_symlink ~/.dotfiles/wezterm ~/.config/wezterm
+    create_symlink ~/.dotfiles/starship ~/.config/starship
+    create_symlink /dev/null ~/Pictures/Screenshots
