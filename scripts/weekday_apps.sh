@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 2
+
 is_weekday() {
     local day_of_week
     day_of_week=$(date +%u) # 1 (Monday) to 7 (Sunday)
