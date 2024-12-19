@@ -12,6 +12,11 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
+	{
+		key = "n",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.ToggleFullScreen,
+	},
 }
 
 config.window_padding = {
