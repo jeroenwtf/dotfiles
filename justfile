@@ -105,3 +105,7 @@ symlink-dotfiles:
     create_symlink ~/.dotfiles/wezterm ~/.config/wezterm
     create_symlink ~/.dotfiles/starship ~/.config/starship
     create_symlink /dev/null ~/Pictures/Screenshots
+
+[group('chores')]
+backup-shortcuts:
+    dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ > ~/.dotfiles/gnome/custom_keybindings.dconf
