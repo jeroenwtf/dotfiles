@@ -1,7 +1,9 @@
+@ansible/ansible-language-server
 @antfu/ni
 @astrojs/language-server
 @fsouza/prettierd
 @microsoft/compose-language-service
 @vtsls/language-server
 git-recent
+neovim
 yaml-language-server
