@@ -7,7 +7,6 @@ return {
       local disable_filetypes = { c = true, cpp = true }
       return {
         timeout_ms = 500,
-        -- timeout_ms = 1500,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
@@ -15,7 +14,12 @@ return {
       css = { 'prettierd' },
       javascript = { 'prettierd' },
       lua = { 'stylua' },
-      -- ruby = { 'standardrb' },
+      eruby = { 'htmlbeautifier' },
+    },
+    formatters = {
+      htmlbeautifier = {
+        args = { '--keep-blank-lines', '1' },
+      },
     },
   },
 }
