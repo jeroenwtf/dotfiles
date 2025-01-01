@@ -4,6 +4,8 @@ vim.keymap.set('n', '<leader>w', '<cmd>lua MiniBufremove.delete()<CR>', { desc =
 vim.keymap.set('n', '<leader>s', '<cmd>w<CR><esc>', { desc = '[S]ave file' })
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selected lines' })
+vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Unindent selected lines' })
 vim.keymap.set('n', '<leader>tl', '<cmd>lua NumberToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
 vim.keymap.set('n', '<leader>tc', '<cmd>lua ConcealToggle()<CR>', { noremap = true, silent = true, desc = 'Toggle [c]onceallevel' })
 vim.keymap.set('n', '<leader>fp', function()

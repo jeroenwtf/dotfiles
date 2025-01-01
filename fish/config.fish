@@ -4,13 +4,13 @@ if test -f ~/.dotfiles/fish/secrets.fish
   source ~/.dotfiles/fish/secrets.fish
 end
 
-set -g -x fish_greeting '' # Removes fish greeting
+set -gx fish_greeting '' # Removes fish greeting
 set XDG_CONFIG_HOME ~/.config
 set XDG_CURRENT_DESKTOP GNOME
-set NODE_OPTIONS "--max-old-space-size=4096" # node memory
+# set NODE_OPTIONS "--max-old-space-size=4096" # node memory - disabled to test if it's still necessary
 set PGUSER "postgres"
 set EDITOR "nvim"
-set --export STARSHIP_CONFIG ~/.config/starship/starship.toml
+set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
 
 # PATH
 fish_add_path ~/.npm-global/bin

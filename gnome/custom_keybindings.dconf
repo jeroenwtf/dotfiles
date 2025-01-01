@@ -7,3 +7,13 @@ name='Rofi'
 binding='<Super>a'
 command='/home/jeroen/.dotfiles/scripts/rofi_todo.sh'
 name='Add Todoist todo'
+
+[custom2]
+binding='<Super>n'
+command='/home/jeroen/.dotfiles/scripts/rofi_add_note.sh'
+name='Rofi: Add note'
+
+[custom3]
+binding='<Super>e'
+command='rofi -modi emoji -show emoji'
+name='Rofi: Emoji'

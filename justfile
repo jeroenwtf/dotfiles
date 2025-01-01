@@ -10,6 +10,7 @@ setup:
 
     @just install-gnome-extensions-cli
     @just install-gnome-extensions
+    @just enable-shortcuts
 
     @just set-default-shell
     @just install-fisher-and-plugins
@@ -105,3 +106,11 @@ symlink-dotfiles:
     create_symlink ~/.dotfiles/wezterm ~/.config/wezterm
     create_symlink ~/.dotfiles/starship ~/.config/starship
     create_symlink /dev/null ~/Pictures/Screenshots
+
+[group('chores')]
+backup-shortcuts:
+    dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ > ~/.dotfiles/gnome/custom_keybindings.dconf
+
+[group('chores')]
+enable-shortcuts:
+    dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ < ~/.dotfiles/gnome/custom_keybindings.dconf
