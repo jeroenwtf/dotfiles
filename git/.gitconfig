@@ -64,7 +64,7 @@
   tool = neovim
 
 [mergetool "neovim"]
-  cmd = nvim --wait $MERGED
+  cmd = nvim $MERGED
 
 [pull]
   rebase = false
