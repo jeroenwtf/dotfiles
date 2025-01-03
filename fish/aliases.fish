@@ -7,8 +7,8 @@ abbr rm 'rm -v'
 abbr cp 'cp -v'
 
 # eza
-alias ls='eza --classify=auto --color --group-directories-first --sort=extension -A'
-alias la='eza --classify=auto --color --group-directories-first --sort=extension -a -l --octal-permissions --no-permissions'
+alias ls='eza --classify=auto --color --group-directories-first -A'
+alias la='eza --classify=auto --color --group-directories-first -a -l --octal-permissions --no-permissions'
 
 # lazygit and lazydocker
 alias lg="lazygit"
