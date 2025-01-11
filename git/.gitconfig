@@ -10,6 +10,7 @@
   slog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   sadd = !sh -c 'cd -- ${GIT_PREFIX:-.} && git add -- "$@" && git status' --
   co = checkout
+  qco = quick-checkout
 
 [color]
   branch = auto

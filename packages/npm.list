@@ -4,6 +4,7 @@
 @fsouza/prettierd
 @microsoft/compose-language-service
 @vtsls/language-server
+git-quick-checkout
 git-recent
 neovim
 yaml-language-server
