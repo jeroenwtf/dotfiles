@@ -1,0 +1,8 @@
+#zen-tabbox-wrapper {
+	margin-right: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+#tabbrowser-tabpanels .browserSidebarContainer {
+	border-radius: 0 !important;
+}
