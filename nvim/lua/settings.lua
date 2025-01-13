@@ -68,3 +68,6 @@ vim.opt.hlsearch = true
 
 -- Turn off diagnostics
 vim.diagnostic.config { virtual_text = false }
+
+-- Prepend mise shims to PATH
+vim.env.PATH = vim.env.HOME .. '/.local/share/mise/shims:' .. vim.env.PATH
