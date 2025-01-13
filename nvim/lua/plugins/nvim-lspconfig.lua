@@ -107,17 +107,20 @@ return {
           }
         end,
 
-        --[[
-          ['ruby_lsp'] = function()
-            require('lspconfig').ruby_lsp.setup {
-              init_options = {
-                formatter = 'standard',
-                linters = { 'standard' },
-              },
-              capabilities = capabilities,
-            }
-          end,
-          ]]
+        ['ruby_lsp'] = function()
+          require('lspconfig').ruby_lsp.setup {
+            capabilities = capabilities,
+            cmd = { vim.fn.expand '~/.local/share/mise/shims/ruby-lsp' },
+          }
+        end,
+
+        ['standardrb'] = function()
+          require('lspconfig').standardrb.setup {
+            capabilities = capabilities,
+            mason = false,
+            cmd = { vim.fn.expand '~/.local/share/mise/shims/standardrb' },
+          }
+        end,
       },
     }
   end,
