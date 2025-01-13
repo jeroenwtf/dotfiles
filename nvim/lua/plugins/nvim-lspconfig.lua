@@ -2,9 +2,6 @@ return {
   'neovim/nvim-lspconfig',
   version = '*',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-    'williamboman/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
     { 'j-hui/fidget.nvim', opts = {} },
     { 'folke/neodev.nvim', opts = {} },
   },
@@ -26,8 +23,6 @@ return {
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-        -- The following two autocommands are used to highlight references of the
-        -- word under your cursor when your cursor rests there for a little while.
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -57,71 +52,54 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+    local lspconfig = require 'lspconfig'
+
     local servers = {
-      html = {},
-      standardrb = {},
-      stimulus_ls = {},
-      tailwindcss = {},
-      cssls = {},
-      yamlls = {},
-      eslint = {},
-      vtsls = {},
-      docker_compose_language_service = {},
-      astro = {},
-      ruby_lsp = {},
-      lua_ls = {
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
+      'html',
+      'stimulus_ls',
+      'tailwindcss',
+      'cssls',
+      'yamlls',
+      'docker_compose_language_service',
+      'astro',
+      'vtsls',
+      'ruby_lsp',
+      'standardrb',
+    }
+
+    local function is_executable(command)
+      return vim.fn.executable(command) == 1
+    end
+
+    for _, server in ipairs(servers) do
+      local executable = lspconfig[server].document_config.default_config.cmd[1]
+
+      if not is_executable(executable) then
+        print(string.format('Warning: %s executable not found. LSP for %s may not work.', executable, server))
+      end
+
+      lspconfig[server].setup { capabilities = capabilities }
+    end
+
+    lspconfig.lua_ls.setup {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = 'Replace',
           },
         },
       },
     }
 
-    require('mason').setup()
-
-    local ensure_installed = vim.tbl_keys(servers or {})
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-    require('mason-lspconfig').setup {
-      ensure_installed = ensure_installed,
-      automatic_installation = true,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-
-        ['eslint'] = function()
-          require('lspconfig').eslint.setup {
-            capabilities = capabilities,
-            on_attach = function(_, bufnr)
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                buffer = bufnr,
-                command = 'EslintFixAll',
-              })
-            end,
-          }
-        end,
-
-        ['ruby_lsp'] = function()
-          require('lspconfig').ruby_lsp.setup {
-            capabilities = capabilities,
-            cmd = { vim.fn.expand '~/.local/share/mise/shims/ruby-lsp' },
-          }
-        end,
-
-        ['standardrb'] = function()
-          require('lspconfig').standardrb.setup {
-            capabilities = capabilities,
-            mason = false,
-            cmd = { vim.fn.expand '~/.local/share/mise/shims/standardrb' },
-          }
-        end,
-      },
+    lspconfig.eslint.setup {
+      capabilities = capabilities,
+      on_attach = function(_, bufnr)
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          buffer = bufnr,
+          command = 'EslintFixAll',
+        })
+      end,
     }
   end,
 }
