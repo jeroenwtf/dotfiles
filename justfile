@@ -91,7 +91,15 @@ symlink-dotfiles:
             ln -s "$source" "$target"
             echo "Created symlink: $target -> $source"
         else
-            echo "Symlink already exists: $target"
+            if [ -L "$target" ]; then
+                if [ "$(readlink -f "$target")" = "$source" ]; then
+                    echo "✓ Correct symlink already exists: $target"
+                else
+                    echo "Symlink exists but points to the wrong location: $target"
+                fi
+            elif [ -e "$target" ]; then
+                echo "A file or directory already exists at the target location: $target"
+            fi
         fi
     }
 
