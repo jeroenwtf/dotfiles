@@ -35,9 +35,14 @@ end, { desc = 'Open floating menu' })
 -- neo-tree
 vim.keymap.set('n', '<C-s>', '<cmd>Neotree document_symbols reveal right<CR>', { desc = 'Toggle document [s]ymbols sidebar' })
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+-- Diagnostic keymap
+vim.keymap.set('n', '<S-C-d>', function()
+  vim.diagnostic.goto_prev { float = false }
+end, { desc = 'Go to previous [D]iagnostic message' })
+
+vim.keymap.set('n', '<C-d>', function()
+  vim.diagnostic.goto_next { float = false }
+end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 

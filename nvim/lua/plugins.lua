@@ -23,6 +23,7 @@ require('lazy').setup({
   require 'plugins.nvim-lspconfig',
   require 'plugins.nvim-treesitter',
   require 'plugins.telescope',
+  require 'plugins.tiny-inline-diagnostic',
   require 'plugins.todo-comments',
   require 'plugins.tokyonight',
   require 'plugins.which-key',

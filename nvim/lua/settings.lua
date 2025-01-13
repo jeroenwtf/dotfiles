@@ -65,3 +65,6 @@ vim.opt.scrolloff = 5
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- Turn off diagnostics
+vim.diagnostic.config { virtual_text = false }
