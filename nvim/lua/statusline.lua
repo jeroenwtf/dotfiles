@@ -16,8 +16,8 @@ vim.api.nvim_set_hl(0, 'StatuslineLineinfoTotal', { bg = colors.bg_highlight, fg
 
 vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignError', { bg = colors.bg, fg = colors.red })
 vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignWarning', { bg = colors.bg, fg = colors.orange })
-vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignHint', { bg = colors.bg, fg = colors.blue })
-vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignInformation', { bg = colors.bg, fg = colors.magenta })
+vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignHint', { bg = colors.bg, fg = colors.magenta })
+vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignInformation', { bg = colors.bg, fg = colors.cyan })
 
 local modes = {
   ['n'] = 'NORMAL',
