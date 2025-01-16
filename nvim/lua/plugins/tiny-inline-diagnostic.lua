@@ -6,6 +6,7 @@ return {
     require('tiny-inline-diagnostic').setup {
       preset = 'simple',
       options = {
+        show_source = true,
         add_messages = false,
         multiple_diag_under_cursor = true,
         multilines = {
