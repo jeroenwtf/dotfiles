@@ -109,6 +109,7 @@ symlink-dotfiles:
     create_symlink ~/.dotfiles/lazygit ~/.config/lazygit
     create_symlink ~/.dotfiles/kitty ~/.config/kitty
     create_symlink ~/.dotfiles/mise ~/.config/mise
+    create_symlink ~/.dotfiles/mise/.default-gems ~/.default-gems
     create_symlink ~/.dotfiles/nvim ~/.config/nvim
     create_symlink ~/.dotfiles/rofi ~/.config/rofi
     create_symlink ~/.dotfiles/wezterm ~/.config/wezterm
