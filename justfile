@@ -16,6 +16,7 @@ setup:
     @just install-fisher-and-plugins
 
     @just enable-services
+    @just enable-on-startup-script
 
 [group('chores')]
 enable-services:
@@ -123,3 +124,8 @@ backup-shortcuts:
 [group('chores')]
 enable-shortcuts:
     dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ < ~/.dotfiles/gnome/custom_keybindings.dconf
+
+[group('chores')]
+enable-on-startup-script:
+    mkdir -p ~/.config/autostart
+    cp ~/.dotfiles/scripts/templates/on_startup.desktop ~/.config/autostart/

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/jeroen/.dotfiles/scripts/on_startup.sh
+Hidden=false
+X-GNOME-Autostart-enabled=true
+Name=Apps on startup
+Comment=Run this script on startup
