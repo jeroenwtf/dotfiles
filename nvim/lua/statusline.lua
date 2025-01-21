@@ -3,11 +3,11 @@ local colors = require('tokyonight.colors').setup()
 local bg_darker = colors.bg_highlight
 
 vim.api.nvim_set_hl(0, 'StatuslineBase', { bg = colors.bg, fg = colors.fg })
-vim.api.nvim_set_hl(0, 'StatuslineAccent', { bg = bg_darker, fg = colors.blue, bold = true }) -- Blue
-vim.api.nvim_set_hl(0, 'StatuslineInsertAccent', { bg = bg_darker, fg = colors.green, bold = true }) -- Green
+vim.api.nvim_set_hl(0, 'StatuslineAccent', { bg = bg_darker, fg = colors.blue, bold = true })
+vim.api.nvim_set_hl(0, 'StatuslineInsertAccent', { bg = bg_darker, fg = colors.green, bold = true })
 vim.api.nvim_set_hl(0, 'StatuslineVisualAccent', { bg = bg_darker, fg = colors.magenta, bold = true })
 vim.api.nvim_set_hl(0, 'StatuslineReplaceAccent', { bg = bg_darker, fg = colors.red, bold = true })
-vim.api.nvim_set_hl(0, 'StatuslineCmdLineAccent', { bg = bg_darker, fg = colors.orange, bold = true }) -- Orange
+vim.api.nvim_set_hl(0, 'StatuslineCmdLineAccent', { bg = bg_darker, fg = colors.orange, bold = true })
 vim.api.nvim_set_hl(0, 'StatuslineGit', { bg = colors.bg_dark, fg = colors.comment })
 vim.api.nvim_set_hl(0, 'StatuslineFilepath', { bg = colors.bg, fg = colors.comment })
 vim.api.nvim_set_hl(0, 'StatuslineFiletype', { bg = colors.bg, fg = colors.comment })
@@ -16,7 +16,7 @@ vim.api.nvim_set_hl(0, 'StatuslineLineinfoTotal', { bg = colors.bg_highlight, fg
 
 vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignError', { bg = colors.bg, fg = colors.red })
 vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignWarning', { bg = colors.bg, fg = colors.orange })
-vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignHint', { bg = colors.bg, fg = colors.magenta })
+vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignHint', { bg = colors.bg, fg = colors.green1 })
 vim.api.nvim_set_hl(0, 'StatuslineLspDiagnosticsSignInformation', { bg = colors.bg, fg = colors.cyan })
 
 local modes = {
