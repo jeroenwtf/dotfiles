@@ -3,6 +3,7 @@ base-devel
 bat
 diff-so-fancy
 docker
+docker-compose
 eza
 firefox
 firefox-developer-edition
