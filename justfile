@@ -17,6 +17,7 @@ setup:
 
     @just enable-services
     @just enable-on-startup-script
+    @just remap-trackball
 
 [group('chores')]
 enable-services:
@@ -129,3 +130,7 @@ enable-shortcuts:
 enable-on-startup-script:
     mkdir -p ~/.config/autostart
     cp ~/.dotfiles/scripts/templates/on_startup.desktop ~/.config/autostart/
+
+[group('chores')]
+remap-trackball:
+    ./scripts/remap_trackball.sh
