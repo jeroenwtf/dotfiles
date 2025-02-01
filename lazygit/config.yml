@@ -1,4 +1,5 @@
 git:
   paging:
-    colorArg: always
-    pager: diff-so-fancy
+    # colorArg: always
+    # pager: diff-so-fancy
+    externalDiffCommand: difft --color=always
