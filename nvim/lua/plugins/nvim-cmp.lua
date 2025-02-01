@@ -7,15 +7,10 @@ return {
       build = (function()
         return 'make install_jsregexp'
       end)(),
-      dependencies = {
-        {
-          'rafamadriz/friendly-snippets',
-          config = function()
-            require('luasnip.loaders.from_vscode').lazy_load()
-            require('luasnip').filetype_extend('ruby', { 'rails' })
-          end,
-        },
-      },
+      config = function()
+        require('luasnip.loaders.from_vscode').lazy_load()
+        require('luasnip').filetype_extend('ruby', { 'rails' })
+      end,
     },
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
