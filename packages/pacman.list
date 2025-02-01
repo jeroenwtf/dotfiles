@@ -2,6 +2,7 @@ age
 base-devel
 bat
 diff-so-fancy
+difftastic
 docker
 docker-compose
 eza
