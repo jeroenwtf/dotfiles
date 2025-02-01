@@ -3,8 +3,11 @@
 @astrojs/language-server
 @fsouza/prettierd
 @microsoft/compose-language-service
+@tailwindcss/language-server
 @vtsls/language-server
 git-quick-checkout
 git-recent
 neovim
+stimulus-language-server
+vscode-langservers-extracted
 yaml-language-server
