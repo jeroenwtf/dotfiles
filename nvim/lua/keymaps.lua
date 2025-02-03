@@ -1,6 +1,5 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('n', '<leader>w', '<cmd>lua MiniBufremove.delete()<CR>', { desc = 'Close current buffer' })
 vim.keymap.set({ 'n', 'v' }, '<leader>s', '<cmd>w<CR><esc>', { desc = '[S]ave file' })
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
