@@ -43,8 +43,7 @@ end, { desc = 'Open floating menu' })
 -- neo-tree
 vim.keymap.set('n', '<C-s>', '<cmd>Neotree document_symbols reveal right<CR>',
   { desc = 'Toggle document [s]ymbols sidebar' })
--- Add a keymap for <C-r> to refresh the git status of neotree
-vim.keymap.set('n', '<C-r>', function()
+vim.keymap.set('n', '<leader>gr', function()
     require('neo-tree.sources.filesystem.commands').refresh(require('neo-tree.sources.manager').get_state 'filesystem')
     print("Neotree git status refreshed")
   end,
