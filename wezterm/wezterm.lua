@@ -13,6 +13,11 @@ config.keys = {
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 	{
+		key = "|",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
 		key = "n",
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.ToggleFullScreen,
