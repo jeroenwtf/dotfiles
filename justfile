@@ -57,12 +57,8 @@ install-mise-tools:
 [group('install packages')]
 install-npm-packages:
     #!/usr/bin/env bash
-    set -euo pipefail
-    while IFS= read -r package || [[ -n "$package" ]]; do
-        if [[ ! "$package" =~ ^\s*# && -n "$package" ]]; then
-            npm install -g "$package"
-        fi
-    done < packages/npm.list
+    packages=$(<packages/npm.list)
+    npm install -g $packages
 
 [group('install packages')]
 install-gems:
