@@ -1,0 +1,3 @@
+remap-trackball:
+    $HOME/.dotfiles/scripts/remap_trackball.sh
+

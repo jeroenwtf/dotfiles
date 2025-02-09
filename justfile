@@ -17,7 +17,6 @@ setup:
 
     @just enable-services
     @just enable-on-startup-script
-    @just remap-trackball
 
 [group('chores')]
 enable-services:
@@ -109,6 +108,7 @@ symlink-dotfiles:
     create_symlink ~/.dotfiles/git/.gitignore.global ~/.gitignore.global
     create_symlink ~/.dotfiles/fish ~/.config/fish
     create_symlink ~/.dotfiles/lazygit ~/.config/lazygit
+    create_symlink ~/.dotfiles/just ~/.config/just
     create_symlink ~/.dotfiles/kitty ~/.config/kitty
     create_symlink ~/.dotfiles/mise ~/.config/mise
     create_symlink ~/.dotfiles/mise/.default-gems ~/.default-gems
@@ -131,6 +131,3 @@ enable-on-startup-script:
     mkdir -p ~/.config/autostart
     cp ~/.dotfiles/scripts/templates/on_startup.desktop ~/.config/autostart/
 
-[group('chores')]
-remap-trackball:
-    ./scripts/remap_trackball.sh

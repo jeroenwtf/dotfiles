@@ -12,3 +12,5 @@ xinput --set-button-map ${ELECOM_ID} 1 2 8 4 5 6 7 3 1 10 2 12
 # Remap FN1 to "hold to scroll"
 xinput --set-prop ${ELECOM_ID} "libinput Scroll Method Enabled" 0, 0, 1
 xinput --set-prop ${ELECOM_ID} "libinput Button Scrolling Button" 10
+
+echo "Trackball remapped!"
