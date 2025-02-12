@@ -17,13 +17,16 @@ fish_add_path ~/.npm-global/bin
 fish_add_path ~/.npm/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
+fish_add_path ~/.rebbletool/rebbletool/bin
 # fish_add_path ~/.local/share/mise/shims
 
 # Sources
 if status is-interactive
   mise activate fish | source
+  atuin init fish | source
 else
   mise activate fish --shims | source
 end
+
 thefuck --alias | source
 starship init fish | source

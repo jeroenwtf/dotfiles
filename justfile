@@ -102,6 +102,9 @@ symlink-dotfiles:
 
     create_symlink ~/.dotfiles/git/.gitconfig ~/.gitconfig
     create_symlink ~/.dotfiles/git/.gitignore.global ~/.gitignore.global
+    create_symlink /dev/null ~/Pictures/Screenshots
+
+    create_symlink ~/.dotfiles/atuin ~/.config/atuin
     create_symlink ~/.dotfiles/fish ~/.config/fish
     create_symlink ~/.dotfiles/lazygit ~/.config/lazygit
     create_symlink ~/.dotfiles/just ~/.config/just
@@ -110,9 +113,8 @@ symlink-dotfiles:
     create_symlink ~/.dotfiles/mise/.default-gems ~/.default-gems
     create_symlink ~/.dotfiles/nvim ~/.config/nvim
     create_symlink ~/.dotfiles/rofi ~/.config/rofi
-    create_symlink ~/.dotfiles/wezterm ~/.config/wezterm
     create_symlink ~/.dotfiles/starship ~/.config/starship
-    create_symlink /dev/null ~/Pictures/Screenshots
+    create_symlink ~/.dotfiles/wezterm ~/.config/wezterm
 
 [group('chores')]
 backup-shortcuts:

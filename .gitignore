@@ -1,6 +1,9 @@
 .DS_Store
 .vscode
 
+atuin/*
+!atuin/config.toml
+
 fish/*
 !fish/config.fish
 !fish/fish_plugins
