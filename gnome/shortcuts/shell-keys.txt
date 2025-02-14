@@ -1,3 +1,4 @@
 [/]
 focus-active-notification=@as []
 toggle-application-view=@as []
+toggle-quick-settings=@as []
