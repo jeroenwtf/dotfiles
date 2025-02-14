@@ -1,5 +1,5 @@
 [/]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']
 
 [custom-keybindings/custom0]
 binding='<Super>space'
@@ -14,9 +14,9 @@ name='Add Todoist todo'
 [custom-keybindings/custom2]
 binding='<Super>n'
 command='/home/jeroen/.dotfiles/scripts/rofi_add_note.sh'
-name='Rofi: Add note'
+name='Rofi: Add quick note'
 
 [custom-keybindings/custom3]
 binding='<Super>e'
 command='rofi -modi emoji -show emoji'
-name='Rofi: Emoji'
+name='Rofi: Emoji picker'

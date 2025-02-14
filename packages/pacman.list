@@ -29,6 +29,8 @@ python-pipx
 readline
 redis
 ripgrep
+rofi
+rofi-emoji
 ruby
 ruby-erb
 spotify-launcher
