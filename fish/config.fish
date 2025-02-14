@@ -18,7 +18,6 @@ fish_add_path ~/.npm/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.rebbletool/rebbletool/bin
-# fish_add_path ~/.local/share/mise/shims
 
 # Sources
 if status is-interactive

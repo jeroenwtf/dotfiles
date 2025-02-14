@@ -5,8 +5,6 @@ setup:
     @just install-aur-packages
 
     @just install-mise-tools
-    @just install-npm-packages
-    @just install-gems
 
     @just install-gnome-extensions-cli
     @just install-gnome-extensions
@@ -47,22 +45,7 @@ install-gnome-extensions:
 [group('chores')]
 install-mise-tools:
     mise use -g usage
-
-    mise use -g node@lts
-    mise install node@lts
-
-    mise use -g ruby@latest
-    mise install ruby
-
-[group('install packages')]
-install-npm-packages:
-    #!/usr/bin/env bash
-    packages=$(<packages/npm.list)
-    npm install -g $packages
-
-[group('install packages')]
-install-gems:
-    xargs -a packages/gem.list gem install
+    mise install
 
 [group('fish')]
 set-default-shell:
@@ -110,7 +93,6 @@ symlink-dotfiles:
     create_symlink ~/.dotfiles/just ~/.config/just
     create_symlink ~/.dotfiles/kitty ~/.config/kitty
     create_symlink ~/.dotfiles/mise ~/.config/mise
-    create_symlink ~/.dotfiles/mise/.default-gems ~/.default-gems
     create_symlink ~/.dotfiles/nvim ~/.config/nvim
     create_symlink ~/.dotfiles/posting ~/.config/posting
     create_symlink ~/.dotfiles/rofi ~/.config/rofi

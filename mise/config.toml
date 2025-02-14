@@ -2,3 +2,25 @@
 usage = "latest"
 node = "latest"
 ruby = "latest"
+"gem:rails" = "latest"
+"gem:ruby-lsp" = "latest"
+"gem:ruby-lsp-rails" = "latest"
+"npm:@ansible/ansible-language-server" = "latest"
+"npm:@antfu/ni" = "latest"
+"npm:@astrojs/language-server" = "latest"
+"npm:@fsouza/prettierd" = "latest"
+"npm:@microsoft/compose-language-service" = "latest"
+"npm:@tailwindcss/language-server" = "latest"
+"npm:@vtsls/language-server" = "latest"
+"npm:git-quick-checkout" = "latest"
+"npm:git-recent" = "latest"
+"npm:neovim" = "latest"
+"npm:stimulus-language-server" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:yaml-language-server" = "latest"
+
+[settings]
+experimental = true
+
+[settings.ruby]
+default_packages_file = "~/dotfiles/mise/.default-gems"
