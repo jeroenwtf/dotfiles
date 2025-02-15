@@ -32,7 +32,7 @@ configuration {
 window {
   transparency: "screenshot";
   location: center;
-  background-color: #282c34dd;
+  background-color: #282c34ee;
   width: 40%;
   border: 4;
   border-color: @cyan;
