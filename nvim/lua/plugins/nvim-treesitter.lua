@@ -18,6 +18,7 @@ return {
       'markdown',
       'markdown_inline',
       'query',
+      'rasi',
       'ruby',
       'typescript',
       'vim',

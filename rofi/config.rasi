@@ -43,7 +43,7 @@ mainbox {
 }
 
 inputbar {
-  padding: 20px 20px;
+  padding: 32px;
   children: [prompt,textbox-prompt-colon,entry];
   background-color: @bg;
 }
@@ -72,47 +72,28 @@ listview {
 }
 
 element {
-    padding: 1px ;
-    cursor:  pointer;
-    spacing: 5px ;
-    border:  0;
+  padding: 4px 16px;
+  cursor:  pointer;
+  spacing: 5px ;
+  border:  0;
 }
+
 element normal.normal {
-    background-color: red;
-    text-color:       var(normal-foreground);
+  background-color: transparent;
+  text-color: white;
 }
-element normal.urgent {
-    background-color: var(urgent-background);
-    text-color:       var(urgent-foreground);
-}
-element normal.active {
-    background-color: var(active-background);
-    text-color:       var(active-foreground);
-}
-element selected.normal {
-    background-color: var(selected-normal-background);
-    text-color:       var(selected-normal-foreground);
-}
-element selected.urgent {
-    background-color: var(selected-urgent-background);
-    text-color:       var(selected-urgent-foreground);
-}
-element selected.active {
-    background-color: var(selected-active-background);
-    text-color:       var(selected-active-foreground);
-}
+
 element alternate.normal {
-    background-color: var(alternate-normal-background);
-    text-color:       var(alternate-normal-foreground);
+  background-color: transparent;
+  text-color: white;
 }
-element alternate.urgent {
-    background-color: var(alternate-urgent-background);
-    text-color:       var(alternate-urgent-foreground);
+
+element selected.normal {
+  background-color: @orange;
+  text-color: @black;
+  border-radius: 4px;
 }
-element alternate.active {
-    background-color: var(alternate-active-background);
-    text-color:       var(alternate-active-foreground);
-}
+
 element-text {
     background-color: transparent;
     cursor:           inherit;
@@ -134,4 +115,3 @@ button selected {
   background-color: @emphasis;
 }
 
-/* vim:ft=css
