@@ -7,8 +7,10 @@ vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selected lines' })
 vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Unindent selected lines' })
 vim.keymap.set('n', '<leader>tl', '<cmd>lua NumberToggle()<CR>',
   { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
-vim.keymap.set('n', '<leader>tc', '<cmd>lua ConcealToggle()<CR>',
-  { noremap = true, silent = true, desc = 'Toggle [c]onceallevel' })
+vim.keymap.set('n', '<leader>tC', '<cmd>lua ConcealToggle()<CR>',
+  { noremap = true, silent = true, desc = 'Toggle [C]onceallevel' })
+vim.keymap.set('n', '<leader>tc', ':ColorizerToggle<CR>:TailwindColorsToggle<CR>',
+  { noremap = true, silent = true, desc = 'Toggle [c]olor highlighting' })
 vim.keymap.set('n', '<leader>fp', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })

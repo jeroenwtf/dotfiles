@@ -9,6 +9,8 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   'petertriho/nvim-scrollbar',
   'windwp/nvim-ts-autotag',
+  'norcalli/nvim-colorizer.lua',
+  'themaxmarchuk/tailwindcss-colors.nvim',
 
   require 'plugins.comment',
   require 'plugins.conform',
