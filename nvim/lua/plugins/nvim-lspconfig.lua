@@ -56,7 +56,7 @@ return {
 
     local servers = {
       'html',
-      'stimulus_ls',
+      -- 'stimulus_ls',
       'tailwindcss',
       'cssls',
       'yamlls',
