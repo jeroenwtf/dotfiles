@@ -1,6 +1,3 @@
 remap-trackball:
     $HOME/.dotfiles/scripts/remap_trackball.sh
 
-switch-main-display:
-    $HOME/.dotfiles/scripts/switch_main_display.sh
-
