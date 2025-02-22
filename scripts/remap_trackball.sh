@@ -7,7 +7,7 @@ ELECOM_ID=$(xinput list | grep "ELECOM" | head -n 1 | sed -r 's/.*id=([0-9]+).*/
 # 1  2  3  4 5 6        7          8    9    10  11  12
 
 # Remap buttons (FORW to LC, FN2 to MC)
-xinput --set-button-map ${ELECOM_ID} 1 2 8 4 5 6 7 3 1 10 2 12
+xinput --set-button-map ${ELECOM_ID} 1 2 8 4 5 6 7 3 1 0 2 12
 
 # Remap FN1 to "hold to scroll"
 xinput --set-prop ${ELECOM_ID} "libinput Scroll Method Enabled" 0, 0, 1
