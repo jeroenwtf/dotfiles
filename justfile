@@ -98,6 +98,7 @@ symlink-dotfiles:
     create_symlink ~/.dotfiles/rofi ~/.config/rofi
     create_symlink ~/.dotfiles/starship ~/.config/starship
     create_symlink ~/.dotfiles/wezterm ~/.config/wezterm
+    create_symlink ~/.dotfiles/yazi ~/.config/yazi
 
 [group('chores')]
 backup-shortcuts:
