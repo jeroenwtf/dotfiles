@@ -24,6 +24,7 @@ require('lazy').setup({
   require 'plugins.nvim-lspconfig',
   require 'plugins.nvim-treesitter',
   require 'plugins.snacks',
+  require 'plugins.tailwind-tools',
   require 'plugins.telescope',
   require 'plugins.tiny-inline-diagnostic',
   require 'plugins.todo-comments',

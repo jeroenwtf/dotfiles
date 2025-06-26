@@ -12,13 +12,18 @@ return {
       end,
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    {
+      'nvim-tree/nvim-web-devicons',
+      enabled = vim.g.have_nerd_font
+    },
   },
   config = function()
     require('telescope').setup {
       defaults = {
         layout_config = {
-          preview_width = 0.6,
+          horizontal = {
+            preview_width = 0.6,
+          }
         },
       },
       pickers = {

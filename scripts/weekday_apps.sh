@@ -14,4 +14,5 @@ if is_weekday; then
     firefox-developer-edition &
     mattermost-desktop &
     ferdium &
+    obsidian &
 fi
