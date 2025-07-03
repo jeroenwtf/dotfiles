@@ -1,10 +1,12 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set({ 'n', 'v' }, '<leader>s', '<cmd>w<CR><esc>', { desc = '[S]ave file' })
-vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
-vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set('n', '<Tab>', '<cmd>BufferNext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selected lines' })
 vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Unindent selected lines' })
+vim.keymap.set('n', '<S-H>', '<cmd>BufferMovePrevious<CR>', { desc = 'Move buffer to the left' })
+vim.keymap.set('n', '<S-L>', '<cmd>BufferMoveNext<CR>', { desc = 'Move buffer to the right' })
 vim.keymap.set('n', '<leader>tl', '<cmd>lua NumberToggle()<CR>',
   { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
 vim.keymap.set('n', '<leader>tC', '<cmd>lua ConcealToggle()<CR>',

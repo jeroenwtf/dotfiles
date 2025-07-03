@@ -12,6 +12,7 @@ require('lazy').setup({
   'norcalli/nvim-colorizer.lua',
   'themaxmarchuk/tailwindcss-colors.nvim',
 
+  require 'plugins.barbar',
   require 'plugins.comment',
   require 'plugins.conform',
   require 'plugins.git-conflict',

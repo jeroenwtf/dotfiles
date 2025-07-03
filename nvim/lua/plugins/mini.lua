@@ -18,7 +18,7 @@ return {
 
     -- require('mini.bufremove').setup()
     require('mini.move').setup()
-    require('mini.tabline').setup()
+    -- require('mini.tabline').setup()
 
     --[[ require('mini.indentscope').setup {
       draw = {
