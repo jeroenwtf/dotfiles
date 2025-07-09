@@ -64,7 +64,7 @@ return {
       'astro',
       'vtsls',
       'ruby_lsp',
-      'standardrb',
+      -- 'standardrb',
     }
 
     local function is_executable(command)
