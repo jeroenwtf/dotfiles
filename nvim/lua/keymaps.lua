@@ -7,6 +7,7 @@ vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selected lines' })
 vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Unindent selected lines' })
 vim.keymap.set('n', '<S-H>', '<cmd>BufferMovePrevious<CR>', { desc = 'Move buffer to the left' })
 vim.keymap.set('n', '<S-L>', '<cmd>BufferMoveNext<CR>', { desc = 'Move buffer to the right' })
+vim.keymap.set('n', '<leader>br', '<cmd>BufferRestore<CR>', { desc = 'Restore closed buffer' })
 vim.keymap.set('n', '<leader>tl', '<cmd>lua NumberToggle()<CR>',
   { noremap = true, silent = true, desc = 'Toggle relative [l]ine numbers' })
 vim.keymap.set('n', '<leader>tC', '<cmd>lua ConcealToggle()<CR>',

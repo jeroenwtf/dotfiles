@@ -10,7 +10,9 @@ return {
     icons = {
       button = "",
     },
-
+    sidebar_filetypes = {
+      ['neo-tree'] = true,
+    },
     -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
     -- animation = true,
     -- insert_at_start = true,

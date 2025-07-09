@@ -124,6 +124,8 @@ function M.read_open_files(silent)
   if #files > 0 then
     for _, file in ipairs(files) do
       vim.cmd('edit ' .. vim.fn.fnameescape(file))
+      vim.cmd('Neotree close')
+      vim.cmd('Neotree show')
     end
   else
     if not silent then
