@@ -10,6 +10,7 @@ characters=(
     ["Opening question mark (¿)"]="¿"
     ["Euro (€)"]="€"
     ["Catalan dot (·)"]="·"
+    ["Trademark (™)"]="™"
 )
 
 selection=$(printf "%s\n" "${!characters[@]}" | rofi -dmenu -i -p "Pick a character:")
