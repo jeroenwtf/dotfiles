@@ -11,6 +11,7 @@
   sadd = !sh -c 'cd -- ${GIT_PREFIX:-.} && git add -- "$@" && git status' --
   co = checkout
   qco = quick-checkout
+  cp = cherry-pick
 
 [color]
   branch = auto
