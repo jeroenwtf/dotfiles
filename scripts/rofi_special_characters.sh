@@ -11,6 +11,14 @@ characters=(
     ["Euro (€)"]="€"
     ["Catalan dot (·)"]="·"
     ["Trademark (™)"]="™"
+    ["Copyright (©)"]="©"
+    ["Registered trademark (®)"]="®"
+    ["Degree (°)"]="°"
+    ["Plus-minus (±)"]="±"
+    ["Multiplication (×)"]="×"
+    ["Division (÷)"]="÷"
+    ["Bullet point (•)"]="•"
+    ["Ellipsis (…)"]="…"
 )
 
 selection=$(printf "%s\n" "${!characters[@]}" | rofi -dmenu -i -p "Pick a character:")
