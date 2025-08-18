@@ -22,6 +22,26 @@ config.keys = {
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.ToggleFullScreen,
 	},
+	{
+		key = "h",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		key = "j",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{
+		key = "k",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		key = "l",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
 }
 
 config.window_padding = {
