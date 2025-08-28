@@ -14,6 +14,7 @@ vim.keymap.set('n', '<leader>tC', '<cmd>lua ConcealToggle()<CR>',
   { noremap = true, silent = true, desc = 'Toggle [C]onceallevel' })
 vim.keymap.set('n', '<leader>tc', ':ColorizerToggle<CR>:TailwindColorsToggle<CR>',
   { noremap = true, silent = true, desc = 'Toggle [c]olor highlighting' })
+vim.keymap.set('n', '<leader>tt', '<cmd>TodoTelescope<CR>', { desc = 'List TODO comments' })
 vim.keymap.set('n', '<leader>fp', function()
   vim.fn.setreg('+', vim.fn.expand '%:p:.')
 end, { desc = "Copy current buffer's [p]ath" })
