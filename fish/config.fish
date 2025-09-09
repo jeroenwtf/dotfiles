@@ -7,7 +7,7 @@ end
 set -gx fish_greeting '' # Removes fish greeting
 set XDG_CONFIG_HOME ~/.config
 set XDG_CURRENT_DESKTOP GNOME
-# set NODE_OPTIONS "--max-old-space-size=4096" # node memory - disabled to test if it's still necessary
+set NODE_OPTIONS "--max-old-space-size=4097" # node memory - enabled again to test if it's still necessary
 set PGUSER "postgres"
 set EDITOR "nvim"
 set -x STARSHIP_CONFIG ~/.config/starship/starship.toml

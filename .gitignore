@@ -9,3 +9,6 @@ fish/*
 !fish/fish_plugins
 !fish/aliases.fish
 !fish/secrets.fish.age
+!fish/functions/
+fish/functions/*
+!fish/functions/wtf.fish

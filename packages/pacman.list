@@ -19,6 +19,7 @@ lazygit
 less
 libvips
 libyaml
+lsof
 lua-language-server
 mattermost-desktop
 neovim
