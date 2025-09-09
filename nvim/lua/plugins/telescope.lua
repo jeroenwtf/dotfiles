@@ -20,10 +20,15 @@ return {
   config = function()
     require('telescope').setup {
       defaults = {
+        layout_strategy = (vim.o.columns > 200) and 'horizontal' or 'vertical',
         layout_config = {
           horizontal = {
             preview_width = 0.6,
-          }
+          },
+          vertical = {
+            preview_height = 0.5,
+            preview_cutoff = 0,
+          },
         },
       },
       pickers = {
