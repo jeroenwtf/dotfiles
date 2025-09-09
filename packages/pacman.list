@@ -28,7 +28,6 @@ openssl
 postgresql
 python-pipx
 readline
-redis
 ripgrep
 rofi
 rofi-emoji
@@ -37,7 +36,6 @@ ruby-erb
 spotify-launcher
 starship
 thefuck
-ttf-joypixels
 ttf-nerd-fonts-symbols-mono
 wezterm
 xclip
