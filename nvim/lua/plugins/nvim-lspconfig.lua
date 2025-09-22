@@ -101,5 +101,16 @@ return {
         })
       end,
     }
+
+    lspconfig.cssls.setup {
+      capabilities = capabilities,
+      settings = {
+        css = {
+          lint = {
+            unknownAtRules = 'ignore',
+          },
+        },
+      },
+    }
   end,
 }

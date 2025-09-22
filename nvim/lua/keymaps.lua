@@ -1,6 +1,9 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set({ 'n', 'v' }, '<leader>s', '<cmd>w<CR><esc>', { desc = '[S]ave file' })
+
+vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = '[q]uit window' })
+vim.keymap.set('n', '<leader>Q', '<cmd>qa<CR>', { desc = '[Q]uit all windows' })
 vim.keymap.set('n', '<Tab>', '<cmd>BufferNext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selected lines' })
@@ -63,8 +66,8 @@ end, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', '<C-d>', function()
   vim.diagnostic.goto_next { float = false }
 end, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 

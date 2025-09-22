@@ -16,3 +16,6 @@ alias lzd="lazydocker"
 
 # tod
 alias todo="tod t q -c"
+
+alias bruh="node /home/jeroen/Code/bruh/bin/bruh.js"
+alias igor="node /home/jeroen/Code/igor/bin/igor.js"

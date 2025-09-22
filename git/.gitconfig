@@ -12,6 +12,7 @@
   co = checkout
   qco = quick-checkout
   cp = cherry-pick
+  file-history = log -p --all --
 
 [color]
   branch = auto
