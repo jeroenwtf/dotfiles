@@ -1,5 +1,6 @@
 node_modules
 .open-files
+.bruh/
 
 # Local Git configuration
 .gitconfig.local
