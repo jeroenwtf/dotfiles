@@ -7,6 +7,18 @@ return {
   },
   config = function()
     -- ===================================================================
+    -- NATIVE LSP CONFIGURATION FOR NEOVIM 0.11+
+    -- ===================================================================
+    --
+    -- This configuration uses vim.lsp.start() directly with filetype autocommands
+    -- to ensure proper server attachment. lspconfig is used only for extracting
+    -- server configurations as recommended.
+    -- ===================================================================
+
+    -- Create filetype autocommands to start LSP servers for specific filetypes
+    local lsp_group = vim.api.nvim_create_augroup('LspAutoStart', { clear = true })
+
+    -- ===================================================================
     -- UTILITY FUNCTIONS
     -- ===================================================================
 
@@ -16,7 +28,6 @@ return {
     end
 
     -- Safely wrap LSP root_dir functions to prevent errors
-    -- If the original root_dir function fails, fall back to git/svn detection
     local function safe_root_dir(root_dir_func)
       return function(fname)
         local ok, result = pcall(root_dir_func, fname)
@@ -32,10 +43,7 @@ return {
     -- LSP BUFFER MANAGEMENT
     -- ===================================================================
 
-    -- Create filetype autocommands to start LSP servers for specific filetypes
-    local lsp_group = vim.api.nvim_create_augroup('LspAutoStart', { clear = true })
-
-    -- Start an LSP server for a specific buffer
+    -- Start an LSP server for a specific buffer using the native API
     local function start_lsp_for_buffer(bufnr, server_name, config)
       local filename = vim.api.nvim_buf_get_name(bufnr)
       local root_dir = config.root_dir and config.root_dir(filename) or vim.fn.getcwd()
@@ -245,4 +253,3 @@ return {
     setup_lsp_for_filetype('cssls', cssls_server_config, cssls_config.filetypes)
   end,
 }
-
