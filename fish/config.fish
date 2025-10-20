@@ -22,7 +22,8 @@ fish_add_path ~/.rebbletool/rebbletool/bin
 # Sources
 if status is-interactive
   mise activate fish | source
-  atuin init fish | source
+  # atuin init fish | source
+  atuin init fish | sed 's/-k up/up/' | source # Temporary hack fix
 else
   mise activate fish --shims | source
 end
