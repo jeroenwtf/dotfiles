@@ -135,10 +135,87 @@ return {
 
     local lspconfig = require 'lspconfig'
 
-    -- List of LSP servers to configure
-    local servers = {
+    -- ===================================================================
+    -- TAILWIND CSS LSP CONFIGURATION (DISABLED)
+    -- ===================================================================
+    -- Disabled due to memory leak crashes (JavaScript heap out of memory)
+    -- To re-enable, uncomment the configuration below
+    --
+    -- local tailwindcss_config = {
+    --   name = 'tailwindcss',
+    --   cmd = lspconfig.tailwindcss.document_config.default_config.cmd,
+    --   filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'svelte', 'astro' },
+    --   root_dir = function(fname)
+    --     -- For Tailwind CSS v4, look for CSS files with @import "tailwindcss"
+    --     local root = vim.fs.root(fname, { '.git', '.svn' }) or vim.fn.getcwd()
+    --
+    --     -- Check for any CSS file that imports tailwindcss (v4 style)
+    --     local css_files = vim.fn.glob(root .. '/**/*.css', false, true)
+    --     for _, css_file in ipairs(css_files) do
+    --       local content = vim.fn.readfile(css_file)
+    --       local content_str = table.concat(content, '\n')
+    --       if content_str:match('@import%s+[\'"]tailwindcss[\'"]') then
+    --         return root
+    --       end
+    --     end
+    --
+    --     -- Also check for traditional v3 config files for backward compatibility
+    --     local v3_configs = {
+    --       'tailwind.config.js',
+    --       'tailwind.config.ts',
+    --       'tailwind.config.mjs',
+    --       'package.json'
+    --     }
+    --     for _, config_file in ipairs(v3_configs) do
+    --       if vim.fn.filereadable(root .. '/' .. config_file) == 1 then
+    --         if config_file == 'package.json' then
+    --           local content = vim.fn.readfile(root .. '/' .. config_file)
+    --           local content_str = table.concat(content, '\n')
+    --           if content_str:match('"tailwindcss"') then
+    --             return root
+    --           end
+    --         else
+    --           return root
+    --         end
+    --       end
+    --     end
+    --
+    --     return nil
+    --   end,
+    --   settings = {
+    --     tailwindCSS = {
+    --       experimental = {
+    --         classRegex = {
+    --           { 'cva\\(([^)]*)\\)', '[\'"]([^\'"]*)[\'"]' },
+    --           { 'cx\\(([^)]*)\\)', '(?:\'[^\']*\'|\"[^\"]*\")' },
+    --         },
+    --       },
+    --       validate = true,
+    --       lint = {
+    --         cssConflict = 'warning',
+    --         invalidApply = 'error',
+    --         invalidScreen = 'error',
+    --         invalidVariant = 'error',
+    --         invalidConfig = 'error',
+    --         invalidTailwindDirective = 'error',
+    --         recommendedVariantOrder = 'warning'
+    --       },
+    --       hovers = true,
+    --       suggestions = true,
+    --     }
+    --   },
+    --   capabilities = capabilities,
+    -- }
+    --
+    -- vim.lsp.config('tailwindcss', tailwindcss_config)
+
+    -- ===================================================================
+    -- OTHER LSP SERVERS CONFIGURATION
+    -- ===================================================================
+
+    -- List of other LSP servers to configure using traditional method
+    local other_servers = {
       'html',                            -- HTML language server
-      'tailwindcss',                     -- Tailwind CSS language server
       'cssls',                           -- CSS language server
       'yamlls',                          -- YAML language server
       'docker_compose_language_service', -- Docker Compose language server
@@ -149,12 +226,8 @@ return {
       -- 'standardrb',               -- Ruby standardrb linter (commented out)
     }
 
-    -- ===================================================================
-    -- BASIC LSP SERVER CONFIGURATION
-    -- ===================================================================
-
     -- Configure standard LSP servers with default settings
-    for _, server in ipairs(servers) do
+    for _, server in ipairs(other_servers) do
       local lspconfig_config = lspconfig[server].document_config.default_config
 
       if not lspconfig_config or not lspconfig_config.cmd then
@@ -220,21 +293,60 @@ return {
     }
     setup_lsp_for_filetype('lua_ls', lua_server_config, lua_config.filetypes)
 
-    -- ESLint with auto-fix on save
-    local eslint_config = lspconfig.eslint.document_config.default_config
-    local eslint_server_config = {
-      cmd = eslint_config.cmd,
-      root_dir = safe_root_dir(eslint_config.root_dir),
-      capabilities = capabilities,
-      -- Auto-fix on save
-      on_attach = function(_, bufnr)
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          buffer = bufnr,
-          command = 'EslintFixAll',
-        })
+    -- ===================================================================
+    -- ESLINT CONFIGURATION (Native Neovim 0.11+)
+    -- ===================================================================
+
+    -- Configure ESLint using native Neovim 0.11+ LSP config
+    local eslint_config = {
+      name = 'eslint',
+      cmd = lspconfig.eslint.document_config.default_config.cmd,
+      filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'svelte', 'astro' },
+      root_dir = function(fname)
+        return lspconfig.eslint.document_config.default_config.root_dir(fname)
       end,
+      capabilities = capabilities,
+      settings = {
+        codeAction = {
+          disableRuleComment = {
+            enable = true,
+            location = 'separateLine'
+          },
+          showDocumentation = {
+            enable = true
+          }
+        },
+        codeActionOnSave = {
+          enable = true,
+          mode = 'all'
+        },
+        format = true,
+        nodePath = '',
+        onIgnoredFiles = 'off',
+        packageManager = 'npm',
+        quiet = false,
+        rulesCustomizations = {},
+        run = 'onType',
+        useESLintClass = false,
+        validate = 'on',
+        workingDirectory = {
+          mode = 'location'
+        }
+      }
     }
-    setup_lsp_for_filetype('eslint', eslint_server_config, eslint_config.filetypes)
+
+    vim.lsp.config('eslint', eslint_config)
+
+    -- Auto-fix on save for ESLint
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = vim.api.nvim_create_augroup('ESLintFixOnSave', { clear = true }),
+      callback = function(args)
+        local clients = vim.lsp.get_clients({ bufnr = args.buf, name = 'eslint' })
+        if #clients > 0 then
+          vim.lsp.buf.format({ bufnr = args.buf, name = 'eslint' })
+        end
+      end,
+    })
 
     -- CSS Language Server with custom linting rules
     local cssls_config = lspconfig.cssls.document_config.default_config
