@@ -4,6 +4,7 @@
 APPS=(
   "ferdium"
   "mattermost-desktop"
+  "obsidian"
 )
 
 WRAPPER="$HOME/.dotfiles/scripts/electron_wayland_wrapper"
