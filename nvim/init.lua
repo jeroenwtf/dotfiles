@@ -1,4 +1,5 @@
 require 'settings'
+require 'lsp'
 require 'keymaps'
 require 'autocommands'
 require 'plugins'
