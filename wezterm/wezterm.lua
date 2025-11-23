@@ -9,6 +9,11 @@ config.color_scheme = "Tokyo Night"
 config.keys = {
 	{
 		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action { SendString = "\x1b\r" }
+	},
+	{
+		key = "Enter",
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
