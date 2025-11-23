@@ -3,6 +3,7 @@
     "considerPreedit": false,
     "faviconService": "google",
     "font": {
+        "normal": "JetBrains Mono NL",
         "size": 10.5
     },
     "keybinding": "default",
@@ -13,7 +14,7 @@
         "searchFiles": true
     },
     "theme": {
-        "name": "vicinae-dark"
+        "name": "tokyo-night"
     },
     "window": {
         "csd": true,
