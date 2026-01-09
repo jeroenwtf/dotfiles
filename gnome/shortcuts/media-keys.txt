@@ -3,8 +3,8 @@ custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybin
 
 [custom-keybindings/custom0]
 binding='<Super>space'
-command='rofi -show drun'
-name='Rofi'
+command='vicinae toggle'
+name='Vicinae'
 
 [custom-keybindings/custom1]
 binding='<Super>a'
@@ -18,8 +18,8 @@ name='Rofi: Add quick note'
 
 [custom-keybindings/custom3]
 binding='<Super>e'
-command='rofi -modi emoji -show emoji'
-name='Rofi: Emoji picker'
+command='vicinae deeplink vicinae://extensions/vicinae/vicinae/search-emojis'
+name='Emoji picker'
 
 [custom-keybindings/custom4]
 binding='<Super>s'
