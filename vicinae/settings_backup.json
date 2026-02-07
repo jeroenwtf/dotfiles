@@ -1,0 +1,24 @@
+{
+    "closeOnFocusLoss": false,
+    "considerPreedit": false,
+    "faviconService": "google",
+    "font": {
+        "normal": "JetBrains Mono NL",
+        "size": 10.5
+    },
+    "keybinding": "default",
+    "keybinds": {
+    },
+    "popToRootOnClose": true,
+    "rootSearch": {
+        "searchFiles": true
+    },
+    "theme": {
+        "name": "tokyo-night"
+    },
+    "window": {
+        "csd": true,
+        "opacity": 0.98,
+        "rounding": 10
+    }
+}
