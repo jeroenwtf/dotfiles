@@ -14,6 +14,9 @@ alias la='eza --classify=auto --color --group-directories-first -a -l --octal-pe
 alias lg="lazygit"
 alias lzd="lazydocker"
 
+# git
+alias gpr="git pull --rebase"
+
 # tod
 alias todo="tod t q -c"
 
