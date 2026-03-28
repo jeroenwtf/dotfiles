@@ -17,6 +17,7 @@ require('lazy').setup({
     require 'plugins.barbar',
     require 'plugins.comment',
     require 'plugins.conform',
+    require 'plugins.copilot',
     require 'plugins.git-conflict',
     require 'plugins.gitsigns',
     require 'plugins.gp',
