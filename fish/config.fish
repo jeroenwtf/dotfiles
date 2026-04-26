@@ -30,3 +30,6 @@ end
 
 thefuck --alias | source
 starship init fish | source
+
+# opencode
+fish_add_path /home/jeroen/.opencode/bin
