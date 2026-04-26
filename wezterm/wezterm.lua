@@ -6,6 +6,8 @@ config.font_size = 12
 config.line_height = 1.2
 config.color_scheme = "Tokyo Night"
 
+config.enable_wayland = false
+
 config.keys = {
 	{
 		key = "Enter",
@@ -46,6 +48,21 @@ config.keys = {
 		key = "l",
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+	{
+		key = "L",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitPane {
+			direction = "Right",
+			size = { Percent = 25 },
+			command = {
+				args = {
+					"bash",
+					"-lc",
+					'tail -f log/development.log | grep "MYAPP"',
+				},
+			},
+		},
 	},
 }
 

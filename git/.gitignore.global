@@ -2,6 +2,7 @@ node_modules
 .open-files
 .bruh/
 .claude/
+.project-manager/
 
 # Local Git configuration
 .gitconfig.local
