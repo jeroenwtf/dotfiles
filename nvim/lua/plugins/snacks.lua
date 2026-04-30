@@ -3,6 +3,37 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    explorer = {},
+    picker = {
+      sources = {
+        explorer = {
+          layout = {
+            auto_hide = { "input" },
+          },
+          win = {
+            input = {
+              keys = {
+                ["<Esc>"] = false,
+                ["<Tab>"] = false,
+                ["<S-Tab>"] = false,
+              },
+            },
+            list = {
+              keys = {
+                ["<Esc>"] = false,
+                ["<Tab>"] = false,
+                ["<S-Tab>"] = false,
+              },
+            },
+            preview = {
+              keys = {
+                ["<Esc>"] = false,
+              },
+            },
+          },
+        }
+      }
+    },
     indent = {
       enabled = true,
       animate = {

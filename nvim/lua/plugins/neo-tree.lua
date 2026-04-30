@@ -1,11 +1,12 @@
 return {
-  'nvim-neo-tree/neo-tree.nvim',
-  version = '*',
+  "nvim-neo-tree/neo-tree.nvim",
+  branch = "v3.x",
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-    'MunifTanjim/nui.nvim',
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    "nvim-tree/nvim-web-devicons",
   },
+  lazy = false,
   opts = {
     filesystem = {
       filtered_items = {
@@ -13,15 +14,10 @@ return {
         hide_gitignored = false,
         never_show = { '.git' },
       },
-      use_libuv_file_watcher = true,
+      -- use_libuv_file_watcher = true,
       follow_current_file = {
         enabled = true,
       },
     },
-    sources = {
-      'filesystem',
-      'document_symbols',
-      'git_status',
-    },
-  },
+  }
 }

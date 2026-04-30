@@ -12,6 +12,7 @@ return {
     },
     sidebar_filetypes = {
       ['neo-tree'] = true,
+      snacks_picker_list = true,
     },
     -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
     -- animation = true,
