@@ -10,9 +10,12 @@
 
 {
    "$schema": "https://vicinae.com/schemas/config.json",
+   "close_on_focus_loss": false,
+   "activate_on_single_click": true,
    "font": {
       "normal": {
-         "family": "JetBrains Mono NL"
+         "family": "JetBrains Mono NL",
+         "size": 11
       }
    },
    "theme": {
@@ -21,6 +24,14 @@
       },
       "dark": {
          "name": "tokyo-night-storm"
+      }
+   },
+   "telemetry": {
+      "system_info": false
+   },
+   "providers": {
+      "scripts": {
+         "enabled": true
       }
    }
 }
