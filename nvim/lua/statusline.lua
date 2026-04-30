@@ -207,16 +207,83 @@ function Statusline.inactive()
   return ''
 end
 
--- TODO: Add specific one for neo-tree
+-- Check if current buffer is a real file buffer
+local function is_file_buffer()
+  -- Must be a listed buffer
+  if not vim.bo.buflisted then
+    return false
+  end
 
-vim.api.nvim_exec(
-  [[
-  augroup Statusline
-  au!
-  au WinEnter,BufEnter * if &filetype != 'neo-tree' | setlocal statusline=%!v:lua.Statusline.active()
-  au WinEnter,BufEnter * if &filetype == 'neo-tree' | setlocal statusline=%!v:lua.Statusline.inactive()
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-  augroup END
-]],
-  false
-)
+  -- Exclude special buftypes
+  local exclude_buftypes = {
+    ['terminal'] = true,
+    ['prompt'] = true,
+    ['nofile'] = true,
+    ['quickfix'] = true,
+    ['help'] = true,
+  }
+
+  if exclude_buftypes[vim.bo.buftype] then
+    return false
+  end
+
+  -- Must be modifiable (excludes read-only special buffers)
+  if not vim.bo.modifiable then
+    return false
+  end
+
+  -- Must have a filename (excludes scratch buffers and UI panels)
+  local filename = vim.fn.expand('%:t')
+  if filename == '' then
+    return false
+  end
+
+  -- Exclude common UI filetypes
+  local exclude_filetypes = {
+    ['neo-tree'] = true,
+    ['TelescopePrompt'] = true,
+    ['TelescopeResults'] = true,
+    ['snacks_picker'] = true,
+    ['snacks_picker_input'] = true,
+    ['snacks_picker_list'] = true,
+    ['snacks_notif'] = true,
+    ['lazy'] = true,
+    ['mason'] = true,
+    ['notify'] = true,
+    ['noice'] = true,
+  }
+
+  if exclude_filetypes[vim.bo.filetype] then
+    return false
+  end
+
+  return true
+end
+
+local function set_statusline()
+  if is_file_buffer() then
+    vim.wo.statusline = '%!v:lua.Statusline.active()'
+  else
+    vim.wo.statusline = ''
+  end
+end
+
+local statusline_group = vim.api.nvim_create_augroup('Statusline', { clear = true })
+
+vim.api.nvim_create_autocmd({ 'WinEnter', 'BufEnter' }, {
+  group = statusline_group,
+  callback = function()
+    set_statusline()
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'WinLeave', 'BufLeave' }, {
+  group = statusline_group,
+  callback = function()
+    if is_file_buffer() then
+      vim.wo.statusline = '%!v:lua.Statusline.inactive()'
+    else
+      vim.wo.statusline = ''
+    end
+  end,
+})
