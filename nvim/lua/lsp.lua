@@ -34,6 +34,7 @@ local servers = {
   -- 'tailwindcss',
   -- 'stimulus_ls',              -- Stimulus language server (commented out)
   -- 'standardrb',               -- Ruby standardrb linter (commented out)
+  'herb_ls',
 }
 
 vim.lsp.enable(servers)
