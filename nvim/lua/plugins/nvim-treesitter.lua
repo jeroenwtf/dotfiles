@@ -21,6 +21,7 @@ return {
       'c',
       'css',
       'diff',
+      'embedded_template',
       'fish',
       'git_config',
       'gitcommit',
