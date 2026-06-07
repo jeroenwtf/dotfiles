@@ -7,6 +7,9 @@ return {
     picker = {
       sources = {
         explorer = {
+          hidden = true,
+          ignored = true,
+          exclude = { ".git" },
           layout = {
             auto_hide = { "input" },
           },
