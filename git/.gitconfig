@@ -13,6 +13,7 @@
   qco = quick-checkout
   cp = cherry-pick
   file-history = log -p --all --
+  undo = reset --soft HEAD^
 
 [color]
   branch = auto
