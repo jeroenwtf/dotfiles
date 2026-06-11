@@ -19,6 +19,7 @@ return {
                 ["<Esc>"] = false,
                 ["<Tab>"] = false,
                 ["<S-Tab>"] = false,
+                ["/"] = false,
               },
             },
             list = {
@@ -26,11 +27,13 @@ return {
                 ["<Esc>"] = false,
                 ["<Tab>"] = false,
                 ["<S-Tab>"] = false,
+                ["/"] = false,
               },
             },
             preview = {
               keys = {
                 ["<Esc>"] = false,
+                ["/"] = false,
               },
             },
           },
