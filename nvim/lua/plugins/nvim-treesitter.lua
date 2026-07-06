@@ -36,6 +36,7 @@ return {
       'rasi',
       'ruby',
       'typescript',
+      'tsx',
       'vim',
       'vimdoc',
       'yaml',
