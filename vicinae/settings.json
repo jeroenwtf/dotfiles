@@ -11,7 +11,11 @@
 {
    "$schema": "https://vicinae.com/schemas/config.json",
    "close_on_focus_loss": false,
+   "pop_to_root_on_close": true,
    "activate_on_single_click": true,
+   "tray": {
+      "enabled": false
+   },
    "font": {
       "normal": {
          "family": "JetBrains Mono NL",
@@ -29,7 +33,41 @@
    "telemetry": {
       "system_info": false
    },
+   "launcher_window": {
+      "compact_mode": {
+         "enabled": false
+      }
+   },
    "providers": {
+      "@thomaslombart/store.raycast.todoist": {
+         "entrypoints": {
+            "create-task": {
+               "enabled": false
+            },
+            "home": {
+               "enabled": false
+            },
+            "quick-add-task": {
+               "alias": "todo",
+               "preferences": {
+                  "autoCreateLabels": false,
+                  "shouldCloseMainWindow": false
+               }
+            },
+            "search": {
+               "enabled": false
+            },
+            "show-filters": {
+               "enabled": false
+            },
+            "show-labels": {
+               "enabled": false
+            },
+            "show-projects": {
+               "enabled": false
+            }
+         }
+      },
       "scripts": {
          "enabled": true
       }

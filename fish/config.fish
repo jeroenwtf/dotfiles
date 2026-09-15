@@ -33,3 +33,7 @@ starship init fish | source
 
 # opencode
 fish_add_path /home/jeroen/.opencode/bin
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

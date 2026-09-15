@@ -9,7 +9,9 @@ ruby = "latest"
 "npm:@ansible/ansible-language-server" = "latest"
 "npm:@antfu/ni" = "latest"
 "npm:@astrojs/language-server" = "latest"
+"npm:eslint" = "latest"
 "npm:@fsouza/prettierd" = "latest"
+"npm:@github/copilot" = "latest"
 "npm:@microsoft/compose-language-service" = "latest"
 "npm:@tailwindcss/language-server" = "latest"
 "npm:@vtsls/language-server" = "latest"
@@ -19,6 +21,8 @@ ruby = "latest"
 "npm:stimulus-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
 "npm:yaml-language-server" = "latest"
+"gem:foreman" = "latest"
+"gem:bundler" = "latest"
 
 [settings]
 experimental = true
