@@ -13,9 +13,12 @@ return {
     formatters_by_ft = {
       css = { 'prettierd' },
       javascript = { 'prettierd' },
+      javascriptreact = { 'prettierd' },
       typescript = { 'prettierd' },
+      typescriptreact = { 'prettierd' },
       lua = { 'stylua' },
       eruby = { 'htmlbeautifier' },
+      ruby = { 'rubocop' },
     },
     formatters = {
       htmlbeautifier = {

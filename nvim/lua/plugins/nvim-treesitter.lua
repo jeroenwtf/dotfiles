@@ -27,6 +27,7 @@ return {
       'gitcommit',
       'html',
       'javascript',
+      'json',
       'just',
       'lua',
       'luadoc',
