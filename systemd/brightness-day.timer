@@ -1,0 +1,8 @@
+[Unit]
+Description=Restore monitor brightness at 07:00
+
+[Timer]
+OnCalendar=*-*-* 07:00:00
+
+[Install]
+WantedBy=timers.target

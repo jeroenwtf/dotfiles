@@ -8,12 +8,12 @@ name='Vicinae'
 
 [custom-keybindings/custom1]
 binding='<Super>a'
-command='/home/jeroen/.dotfiles/scripts/rofi_todo.sh'
+command='/home/jeroen/.dotfiles/scripts/desktop/rofi_todo.sh'
 name='Add Todoist todo'
 
 [custom-keybindings/custom2]
 binding='<Super>n'
-command='/home/jeroen/.dotfiles/scripts/rofi_add_note.sh'
+command='/home/jeroen/.dotfiles/scripts/desktop/rofi_add_note.sh'
 name='Rofi: Add quick note'
 
 [custom-keybindings/custom3]
@@ -23,5 +23,5 @@ name='Emoji picker'
 
 [custom-keybindings/custom4]
 binding='<Super>s'
-command='/home/jeroen/.dotfiles/scripts/rofi_special_characters.sh'
+command='/home/jeroen/.dotfiles/scripts/desktop/rofi_special_characters.sh'
 name='Rofi: Special characters'

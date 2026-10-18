@@ -6,6 +6,10 @@ config.font_size = 12
 config.line_height = 1.2
 config.color_scheme = "Tokyo Night"
 
+config.inactive_pane_hsb = {
+	brightness = 0.4,
+}
+
 config.enable_wayland = false
 -- config.enable_kitty_keyboard = true
 config.warn_about_missing_glyphs = false
