@@ -17,7 +17,3 @@ setup:
 
     @just system enable-services
     @just system enable-autostart
-
-# regenerate gitignored fish secret files from ~/.secrets
-secrets-pull:
-    ~/.dotfiles/scripts/setup/secrets-pull.sh
