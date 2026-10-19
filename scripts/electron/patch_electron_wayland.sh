@@ -7,19 +7,9 @@ APPS=(
   "obsidian"
 )
 
-WRAPPER="$HOME/.dotfiles/scripts/electron_wayland_wrapper"
+WRAPPER="$HOME/.dotfiles/scripts/electron/electron_wayland_wrapper"
 DESKTOP_USER="$HOME/.local/share/applications"
 DESKTOP_SYS="/usr/share/applications"
-
-# Ensure wrapper exists
-mkdir -p "$(dirname "$WRAPPER")"
-if [[ ! -f "$WRAPPER" ]]; then
-  cat > "$WRAPPER" << 'EOF'
-#!/usr/bin/env bash
-exec "$@" --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto
-EOF
-  chmod +x "$WRAPPER"
-fi
 
 mkdir -p "$DESKTOP_USER"
 
