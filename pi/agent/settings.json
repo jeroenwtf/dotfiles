@@ -1,0 +1,31 @@
+{
+  "lastChangelogVersion": "1.4.0",
+  "theme": "ampere-tokyonight-moon",
+  "externalEditor": "nvim",
+  "defaultProvider": "zai",
+  "defaultModel": "glm-5.3",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:pi-theme-tokyo-night-storm-improved",
+    "npm:pi-powerline-footer",
+    "npm:pi-updater",
+    "git:github.com/jonjonrankin/pi-caveman",
+    "npm:pi-mcp-adapter"
+  ],
+  "powerline": {
+    "model": {
+      "display": "qualified"
+    }
+  },
+  "hideThinkingBlock": true,
+  "quietStartup": true,
+  "extensions": [
+    "extensions/lean-tools.ts",
+    "-builtin:mcp"
+  ],
+  "skills": [
+    "~/.claude/skills"
+  ],
+  "enableInstallTelemetry": false,
+  "tuiMode": "regular"
+}
