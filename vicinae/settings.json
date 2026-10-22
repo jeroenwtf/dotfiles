@@ -68,6 +68,16 @@
             }
          }
       },
+      "core": {
+         "entrypoints": {
+            "search-emojis": {
+               "preferences": {
+                  "defaultAction": "copy",
+                  "skinTone": "light"
+               }
+            }
+         }
+      },
       "scripts": {
          "enabled": true
       }
