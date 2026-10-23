@@ -50,6 +50,9 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '— ', trail = '·', nbsp = '␣' }
 
+-- Only show a symbol in the fold column for closed folds
+vim.opt.fillchars = { foldopen = ' ', foldclose = '▸', foldsep = ' ' }
+
 -- About tabs size
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2

@@ -26,6 +26,7 @@ require('lazy').setup({
     -- require 'plugins.neo-tree',
     require 'plugins.nvim-cmp',
     require 'plugins.nvim-treesitter',
+    require 'plugins.nvim-ufo',
     require 'plugins.snacks',
     require 'plugins.telescope',
     require 'plugins.tiny-inline-diagnostic',
