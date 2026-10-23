@@ -1,0 +1,8 @@
+[Unit]
+Description=Restore monitor brightness (day)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.dotfiles/scripts/desktop/brightness.sh --wait 10 50
+Restart=on-failure
+RestartSec=5

@@ -57,7 +57,16 @@ return {
     },
   },
   keys = {
-    { "<leader>w", function() Snacks.bufdelete() end,     desc = "Close current buffer" },
+    {
+      "<leader>w",
+      function()
+        local sidebar_ft = { neo_tree = true, snacks_picker_list = true }
+        if not sidebar_ft[vim.bo.filetype] then
+          Snacks.bufdelete()
+        end
+      end,
+      desc = "Close current buffer",
+    },
     { "<leader>W", function() Snacks.bufdelete.all() end, desc = "Close all buffers" },
     { "<leader>g", function() Snacks.lazygit() end,       desc = "Open lazy[g]it" },
   },

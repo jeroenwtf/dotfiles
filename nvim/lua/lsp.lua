@@ -2,7 +2,7 @@ vim.lsp.config("cssls", {
   settings = {
     css = {
       lint = {
-        unknownAtRules = 'ignore', -- Ignore Tailwind CSS at-rules
+        unknownAtRules = 'ignore',
       },
     },
   }
@@ -15,29 +15,25 @@ vim.lsp.config("lua_ls", {
         globals = { "vim" }
       },
       workspace = {
-        library = { [vim.env.VIMRUNTIME] = true } -- Include Neovim runtime
+        library = { [vim.env.VIMRUNTIME] = true }
       }
     }
   }
 })
 
-local servers = {
-  'html',                            -- HTML language server
-  'cssls',                           -- CSS language server
-  'yamlls',                          -- YAML language server
-  'docker_compose_language_service', -- Docker Compose language server
-  'astro',                           -- Astro framework language server (DISABLED - broken TypeScript SDK configuration)
-  'vtsls',                           -- TypeScript language server
-  'ruby_lsp',                        -- Ruby language server
+vim.lsp.enable({
+  'html',
+  'cssls',
+  'yamlls',
+  'docker_compose_language_service',
+  'vtsls',
+  'ruby_lsp',
   'eslint',
   'lua_ls',
-  -- 'tailwindcss',
-  -- 'stimulus_ls',              -- Stimulus language server (commented out)
-  -- 'standardrb',               -- Ruby standardrb linter (commented out)
   'herb_ls',
-}
-
-vim.lsp.enable(servers)
+  -- 'tailwindcss',
+  -- 'stimulus_ls',
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -56,7 +52,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
-    -- Document highlighting for references
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client.server_capabilities.documentHighlightProvider then
       local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })

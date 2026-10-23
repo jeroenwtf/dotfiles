@@ -3,8 +3,21 @@
 
 .claude
 
+link-handler/domains.yaml
+
 atuin/*
 !atuin/config.toml
+
+pi/*
+!pi/agent
+pi/agent/*
+!pi/agent/AGENTS.md
+!pi/agent/settings.json
+!pi/agent/caveman.json
+!pi/agent/pi-atelier.json
+!pi/agent/extensions
+!pi/agent/skills
+!pi/agent/themes
 
 fish/*
 !fish/config.fish
@@ -14,3 +27,4 @@ fish/*
 !fish/functions/
 fish/functions/*
 !fish/functions/wtf.fish
+!fish/functions/cc.fish

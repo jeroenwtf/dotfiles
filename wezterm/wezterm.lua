@@ -6,13 +6,19 @@ config.font_size = 12
 config.line_height = 1.2
 config.color_scheme = "Tokyo Night"
 
+config.inactive_pane_hsb = {
+	brightness = 0.4,
+}
+
 config.enable_wayland = false
+-- config.enable_kitty_keyboard = true
+config.warn_about_missing_glyphs = false
 
 config.keys = {
 	{
 		key = "Enter",
 		mods = "SHIFT",
-		action = wezterm.action { SendString = "\x1b\r" }
+		action = wezterm.action.SendString '\x1b[13;2u'
 	},
 	{
 		key = "Enter",
@@ -48,21 +54,6 @@ config.keys = {
 		key = "l",
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.ActivatePaneDirection("Right"),
-	},
-	{
-		key = "L",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.SplitPane {
-			direction = "Right",
-			size = { Percent = 25 },
-			command = {
-				args = {
-					"bash",
-					"-lc",
-					'tail -f log/development.log | grep "MYAPP"',
-				},
-			},
-		},
 	},
 }
 

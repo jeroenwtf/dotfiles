@@ -1,0 +1,12 @@
+[Unit]
+Description=Webhook to GNOME notifications
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+ExecStart=%h/.dotfiles/scripts/web/webhook-notify.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

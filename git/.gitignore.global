@@ -3,6 +3,7 @@ node_modules
 .bruh/
 .claude/
 .project-manager/
+.tmp-docs/
 
 # Local Git configuration
 .gitconfig.local

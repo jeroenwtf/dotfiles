@@ -1,5 +1,5 @@
 [/]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/']
 
 [custom-keybindings/custom0]
 binding='<Super>space'
@@ -8,20 +8,25 @@ name='Vicinae'
 
 [custom-keybindings/custom1]
 binding='<Super>a'
-command='/home/jeroen/.dotfiles/scripts/rofi_todo.sh'
+command='/home/jeroen/.dotfiles/scripts/desktop/rofi_todo.sh'
 name='Add Todoist todo'
 
 [custom-keybindings/custom2]
 binding='<Super>n'
-command='/home/jeroen/.dotfiles/scripts/rofi_add_note.sh'
+command='/home/jeroen/.dotfiles/scripts/desktop/rofi_add_note.sh'
 name='Rofi: Add quick note'
 
 [custom-keybindings/custom3]
 binding='<Super>e'
-command='vicinae deeplink vicinae://extensions/vicinae/vicinae/search-emojis'
+command='vicinae deeplink vicinae://launch/core/search-emojis'
 name='Emoji picker'
 
 [custom-keybindings/custom4]
 binding='<Super>s'
-command='/home/jeroen/.dotfiles/scripts/rofi_special_characters.sh'
+command='/home/jeroen/.dotfiles/scripts/desktop/rofi_special_characters.sh'
 name='Rofi: Special characters'
+
+[custom-keybindings/custom5]
+binding='<Super>c'
+command='vicinae deeplink vicinae://launch/clipboard/history'
+name='Vicinae Clipboard'

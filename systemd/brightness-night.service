@@ -1,0 +1,8 @@
+[Unit]
+Description=Set monitor brightness to minimum (night)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.dotfiles/scripts/desktop/brightness.sh --wait 10 0
+Restart=on-failure
+RestartSec=5

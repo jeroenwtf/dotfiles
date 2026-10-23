@@ -8,5 +8,7 @@ return {
     vim.cmd.hi 'Folded guibg=#16161e'
     -- Make fold column indicators stand out (tokyonight magenta)
     vim.cmd.hi 'FoldColumn guifg=#bb9af7'
+		-- Fix color for untracked files in sidebar
+    vim.cmd.hi 'SnacksPickerGitStatusUntracked guifg=#7dcfff'
   end,
 }

@@ -1,0 +1,11 @@
+[Unit]
+Description=Set monitor brightness based on time of day
+
+[Service]
+Type=oneshot
+ExecStart=%h/.dotfiles/scripts/desktop/brightness.sh --wait 10
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
