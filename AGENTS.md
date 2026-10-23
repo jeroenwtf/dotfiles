@@ -18,7 +18,7 @@ Custom keybindings live in `media-keys.txt`. GNOME only activates a `customN` se
 
 ## Neovim
 
-Entry point `nvim/init.lua` requires modules in order: `settings` → `lsp` → `keymaps` → `autocommands` → `plugins` → `statusline`. Plugin specs are one per file in `lua/plugins/*.lua`, required individually in `plugins.lua` (a few specs live directly in `plugins.lua`).
+Entry point `nvim/init.lua` requires modules in order: `settings` → `lsp` → `keymaps` → `autocommands` → `plugins` → `statusline`. Plugin specs are one per file in `lua/plugins/*.lua`, required individually in `plugins.lua` (a few specs live directly in `plugins.lua`). Full file map, plugin inventory, and keymap list: `nvim/README.md`.
 
 ### nvim-treesitter (main branch)
 
@@ -37,7 +37,7 @@ This config uses the **`main`** branch, whose API differs from `master`:
 - LSP is configured in `lua/lsp.lua` with the Neovim 0.11+ API (`vim.lsp.config` / `vim.lsp.enable`). Servers: `html`, `cssls`, `yamls`, `docker_compose_language_service`, `vtsls`, `ruby_lsp`, `eslint`, `lua_ls`, `herb_ls`. (`astro` is disabled — broken TypeScript SDK config.)
 - Formatting: `conform.nvim` on save — prettierd (TS/JS/CSS), stylua (Lua), htmlbeautifier (ERB).
 - Linting: `nvim-lint` only lints markdown (`markdownlint`) on `BufEnter`/`BufWritePost`/`InsertLeave`.
-- Keymaps are all in `lua/keymaps.lua`. Notable: `<leader>s` save, `<leader>fs` source config, `<leader><leader>` floating menu, `<leader>a` GP (AI) chat prefix, `<leader>o` / `<leader>fl` `.open-files` operations, `<leader>tc` toggle color highlighting.
+- Keymaps are all in `lua/keymaps.lua`. Notable: `<leader>s` save, `<leader>fs` source config, `<leader>g` lazygit (refreshes the snacks explorer on close), `<leader>o` / `<leader>fl` `.open-files` operations, `<leader>tc` toggle color highlighting.
 - **`.open-files` system** (`autocommands.lua`): per-project buffer persistence. `:OpenFilesInit` creates a `.open-files` file in the cwd; open buffers are written to it on `BufAdd`/`BufDelete`. `:OpenFilesRead` restores the buffer list.
 
 ## Code style (Lua)

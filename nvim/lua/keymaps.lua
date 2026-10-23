@@ -44,20 +44,6 @@ vim.keymap.set('n', '<leader>fl', '<cmd>OpenFilesRead<CR>', { noremap = true, de
 vim.keymap.set('n', '<leader>tg', '<cmd>Gitsigns toggle_current_line_blame<CR>',
   { noremap = true, silent = true, desc = 'Toggle [g]it blame' })
 
--- menu
-vim.keymap.set('n', '<leader><leader>', function()
-  require('menu').open 'default'
-end, { desc = 'Open floating menu' })
-
--- neo-tree
-vim.keymap.set('n', '<C-s>', '<cmd>Neotree document_symbols reveal right<CR>',
-  { desc = 'Toggle document [s]ymbols sidebar' })
-vim.keymap.set('n', '<leader>gr', function()
-    require('neo-tree.sources.filesystem.commands').refresh(require('neo-tree.sources.manager').get_state 'filesystem')
-    print("Neotree git status refreshed")
-  end,
-  { desc = 'Refresh git status in Neotree' })
-
 -- Diagnostic keymap
 vim.keymap.set('n', '<S-C-d>', function()
   vim.diagnostic.goto_prev { float = false }
@@ -93,36 +79,3 @@ vim.keymap.set('n', '<leader>or', '<cmd>OpenFilesRead<CR>', { desc = 'Open store
 vim.keymap.set('n', '<leader>ow', '<cmd>OpenFilesWrite<CR>', { desc = 'Save buffers to list' })
 vim.keymap.set('n', '<leader>oi', '<cmd>OpenFilesInit<CR>', { desc = '[I]nit .open-files' })
 vim.keymap.set('n', '<leader>od', '<cmd>OpenFilesDelete<CR>', { desc = '[D]elete' })
-
--- GP AI stuff
-local function keymapOptions(desc)
-  return {
-    noremap = true,
-    silent = true,
-    nowait = true,
-    desc = 'AI: ' .. desc,
-  }
-end
-
--- Chat commands
-vim.keymap.set('n', '<leader>a<CR>', '<cmd>GpChatRespond<cr>', keymapOptions 'Respond')
-vim.keymap.set('n', '<leader>ac', '<cmd>GpChatNew<cr>', keymapOptions 'New [C]hat')
-vim.keymap.set('n', '<leader>at', '<cmd>GpChatToggle<cr>', keymapOptions '[T]oggle Chat')
-vim.keymap.set('n', '<leader>af', '<cmd>GpChatFinder<cr>', keymapOptions 'Chat [F]inder')
-vim.keymap.set('n', '<leader>ad', '<cmd>GpChatDelete<cr>', keymapOptions '[D]elete Chat')
-
-vim.keymap.set('v', '<leader>ac', ":<C-u>'<,'>GpChatNew<cr>", keymapOptions 'Visual [C]hat New')
-vim.keymap.set('v', '<leader>at', ":<C-u>'<,'>GpChatToggle<cr>", keymapOptions 'Visual [T]oggle Chat')
-
--- Prompt commands
-vim.keymap.set('v', '<leader>ar', ":<C-u>'<,'>GpRewrite<cr>", keymapOptions 'Visual [R]ewrite')
-vim.keymap.set('v', '<leader>aa', ":<C-u>'<,'>GpAppend<cr>", keymapOptions 'Visual Append ([a]fter)')
-vim.keymap.set('v', '<leader>ab', ":<C-u>'<,'>GpPrepend<cr>", keymapOptions 'Visual Prepend ([b]efore)')
-
--- Hooks
-vim.keymap.set('v', '<leader>ai', ":<C-u>'<,'>GpImplement<cr>", keymapOptions '[I]mplement selection')
-vim.keymap.set('v', '<leader>ae', ":<C-u>'<,'>GpExplain<cr>", keymapOptions '[E]xplain selection')
-vim.keymap.set('v', '<leader>av', ":<C-u>'<,'>GpCodeReview<cr>", keymapOptions 'Code Re[v]iew selection')
-
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>aq', '<cmd>GpStop<cr>', keymapOptions 'Stop')
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>an', '<cmd>GpNextAgent<cr>', keymapOptions '[N]ext Agent')

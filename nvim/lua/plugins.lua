@@ -20,7 +20,6 @@ require('lazy').setup({
     require 'plugins.copilot',
     require 'plugins.git-conflict',
     require 'plugins.gitsigns',
-    require 'plugins.gp',
     -- require 'plugins.menu',
     require 'plugins.lint',
     require 'plugins.mini',
