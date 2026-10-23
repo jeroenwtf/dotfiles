@@ -4,6 +4,11 @@ return {
   init = function()
     vim.cmd.colorscheme 'tokyonight-night'
     vim.cmd.hi 'Comment gui=none'
+    -- Darker bg for folded blocks (tokyonight bg_dark) instead of default bg_highlight
+    vim.cmd.hi 'Folded guibg=#16161e'
+    -- Make fold column indicators stand out (tokyonight magenta)
+    vim.cmd.hi 'FoldColumn guifg=#bb9af7'
+		-- Fix color for untracked files in sidebar
     vim.cmd.hi 'SnacksPickerGitStatusUntracked guifg=#7dcfff'
   end,
 }
